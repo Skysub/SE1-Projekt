@@ -1,3 +1,5 @@
+/target/
+
 # Compiled class file
 *.class
 
@@ -40,3 +42,4 @@ local.properties
 .classpath
 .settings/
 .loadpath
+/target/
