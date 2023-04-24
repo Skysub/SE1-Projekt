@@ -11,16 +11,28 @@ public class Employee {
         this.initials = initials;
     }
 
+
     public void addActivity(Activity activity){
         this.personalActivities.add(activity);
     }
 
-    public void registerTime(Activity activity, int Time){
+    public void registerTime(Activity activity, int Time){ //TODO
 
     }
 
-    public static Object getInitials() {
+    //Getters and Setters -----
+    public Object getInitials() {
         return initials;
+    }
+
+
+    public boolean hasActivity(String activityName) {
+        for(Activity activity : personalActivities){
+            if (activity.getName().equals(activityName)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

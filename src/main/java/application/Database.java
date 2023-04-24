@@ -24,4 +24,9 @@ public class Database implements Serializable {
     	projects.put(ID, new Project(ID));
     	return projects.get(ID);
     }
+
+    // Getters ---
+    public Employee getEmployee(String initials) {
+        return employees.get(initials);
+    }
 }
