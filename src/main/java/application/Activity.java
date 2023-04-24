@@ -8,6 +8,11 @@ public abstract class Activity {
         this.name = name;
     }
 
+    public Activity(String name, int startWeek){
+        this.name = name;
+        this.startWeek = startWeek;
+    }
+
     public Object getName() {
         return name;
     }
