@@ -10,8 +10,16 @@ public class WorkActivity extends Activity{
         super(name,startWeek);
     }
 
+    public WorkActivity(String name, Integer startWeek, Integer endWeek) {
+        super(name, startWeek,  endWeek);
+    }
+
     public Object getStartWeek() {
         return this.startWeek;
+    }
+
+    public Object getEndWeek() {
+        return this.endWeek;
     }
     
 }

@@ -31,4 +31,15 @@ public void theWorkActivityHasTheStartWeek(int startWeek) {
     assertEquals(startWeek, workActivity.getStartWeek());
 }
 
+@When("a new workActivity with the name {string}, start week {int} is made and end week {int}")
+public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek) {
+    // Write code here that turns the phrase above into concrete actions
+    workActivity = new WorkActivity(name, startWeek, endWeek);
+}
+@Then("The workActivity has the end week {int}")
+public void theWorkActivityHasTheEndWeek(Integer endWeek) {
+    // Write code here that turns the phrase above into concrete actions
+    assertEquals(endWeek, workActivity.getEndWeek());
+}
+
 }
