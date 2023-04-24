@@ -1,7 +1,17 @@
 package application;
 
 public abstract class Activity {
-    String name;
-    int startWeek, endWeek; //Er det sådan det skal opbevares?
+    private static String name;
+    int startWeek, endWeek;
+
+    public Activity(String name){
+        this.name = name;
+    }
+
+    public Object getName() {
+        return name;
+    }
+
+
 }
 
