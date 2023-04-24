@@ -4,8 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import application.Activity;
-import application.Database;
+import application.*;
 
 public class DatabaseChecks {
 
@@ -15,7 +14,7 @@ public class DatabaseChecks {
 		Database d = new Database();
 		
 		d.CreateEmployee("test");
-		d.CreateProject(23069); //.addActivity(new Activity());
+		d.CreateProject(23069).addActivity(new WorkActivity("testAkt"));
 		
 		
 		//Vi tjekker om databasen kan serialiseres eller om der bliver kastet en exception
@@ -23,8 +22,8 @@ public class DatabaseChecks {
 			new ObjectOutputStream(new ByteArrayOutputStream()).writeObject(d);
 			System.out.println("Databasen er serializable");
 		} catch (IOException e) {
-			System.out.println("Følgende klasse er ikke serializable: "+e.getMessage());
 			System.out.println(e);
+			System.out.println("Følgende klasse er ikke serializable: "+e.getMessage());
 			org.junit.jupiter.api.Assertions.assertTrue(false);
 		}
 	}

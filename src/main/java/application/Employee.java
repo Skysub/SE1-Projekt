@@ -1,8 +1,11 @@
 package application;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Employee {
+public class Employee implements Serializable {
+	private static final long serialVersionUID = -7608060694345485735L;
+	
 	ArrayList<Activity> personalActivities = new ArrayList<>();
     private static String initials;
     int workHours;
