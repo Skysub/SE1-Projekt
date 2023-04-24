@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Employee {
 	ArrayList<Activity> personalActivities = new ArrayList<>();
-    String initials;
+    private static String initials;
+    int workHours;
 
     public Employee(String initials){
         this.initials = initials;
@@ -17,4 +18,9 @@ public class Employee {
     public void registerTime(Activity activity, int Time){
 
     }
+
+    public static Object getInitials() {
+        return initials;
+    }
+
 }
