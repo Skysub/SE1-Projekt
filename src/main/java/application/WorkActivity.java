@@ -21,6 +21,7 @@ public class WorkActivity extends Activity{
 
     public void addEmployee(Employee employee){
         employees.add(employee);
+        employee.addActivity(this);
     }
 
 

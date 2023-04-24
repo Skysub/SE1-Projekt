@@ -30,6 +30,7 @@ public class Employee implements Serializable {
 
 
     public boolean hasActivity(String activityName) {
+        System.out.println(personalActivities.get(0).getName());
         for(Activity activity : personalActivities){
             if (activity.getName().equals(activityName)){
                 return true;

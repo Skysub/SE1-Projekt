@@ -60,7 +60,6 @@ public void anActivityWithTheNameExists(String name) {
 @When("the employee with the ID {string} is added to the activity")
 public void theEmployeeIsAddedToTheActivity(String initials) {
     workActivity.addEmployee(database.getEmployee(initials));
-    database.getEmployee(initials).addActivity(workActivity);
 }
 
 @Then("the activity has the employee with initials {string}")

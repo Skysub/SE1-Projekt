@@ -39,7 +39,6 @@ public void anEmployeeWithTheIDExists(String initials) {
 @Then("the employee with the ID {string} has the activity with name {string}")
 public void theEmployeeHasTheActivityWithName(String initials, String activityName) {
     // Write code here that turns the phrase above into concrete actions
-    System.out.println(database.getEmployee(initials).hasActivity(activityName));
     assertTrue(database.getEmployee(initials).hasActivity(activityName));
 }
 }
