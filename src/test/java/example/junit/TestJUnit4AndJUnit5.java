@@ -25,5 +25,4 @@ public class TestJUnit4AndJUnit5 {
 		System.out.println("JUnit 5");
 		org.junit.jupiter.api.Assertions.assertTrue(true); // JUnit 5
 	}
-
 }
