@@ -3,7 +3,8 @@ package application;
 import java.io.Serializable;
 
 public abstract class Activity implements Serializable {
-	private static final long serialVersionUID = 6969694201337L;
+
+    private static final long serialVersionUID = 6969694201337L;
 	private static String name;
     int startWeek, endWeek;
 

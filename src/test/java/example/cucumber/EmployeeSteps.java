@@ -32,7 +32,6 @@ public void theEmployeeHasTheInitials(String expectedInitials) {
 
 @Given("an employee with the ID {string} exists")
 public void anEmployeeWithTheIDExists(String initials) {
-    // Write code here that turns the phrase above into concrete actions
     database.CreateEmployee(initials);
 }
 

@@ -8,6 +8,7 @@ public class Employee implements Serializable {
 	
 	ArrayList<Activity> personalActivities = new ArrayList<>();
     private static String initials;
+
     int workHours;
 
     public Employee(String initials){
@@ -19,7 +20,7 @@ public class Employee implements Serializable {
         this.personalActivities.add(activity);
     }
 
-    public void registerTime(Activity activity, int Time){ //TODO
+    public void registerTime(Activity activity, int Time){
 
     }
 
@@ -37,6 +38,10 @@ public class Employee implements Serializable {
             }
         }
         return false;
+    }
+
+    public String findEmployee(){
+
     }
 
 }
