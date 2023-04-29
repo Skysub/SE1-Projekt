@@ -20,7 +20,6 @@ public class CreateProjectSteps {
         this.errorMessageHolder = errorMessageHolder;
     }
 
-
     @When("the employee creates a project with project number {int} and project name {string}")
     public void the_employee_creates_a_project_with_project_number_and_project_name(Integer ID, String name) {
         // Write code here that turns the phrase above into concrete actions
