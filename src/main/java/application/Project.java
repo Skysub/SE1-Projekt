@@ -2,6 +2,9 @@ package application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
+import javafx.scene.Node;
 
 public class Project implements Serializable{
 	private static final long serialVersionUID = 6537227987620711347L;
@@ -31,5 +34,9 @@ public class Project implements Serializable{
 
     public Integer getID() {
         return this.ID;
+    }
+
+    public ArrayList<Activity> getActivities() {
+        return activities;
     }
 }
