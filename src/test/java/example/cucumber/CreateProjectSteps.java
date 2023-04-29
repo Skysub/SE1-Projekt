@@ -20,11 +20,6 @@ public class CreateProjectSteps {
         this.errorMessageHolder = errorMessageHolder;
     }
 
-    @Given("an employee with the ID {string} exists")
-    public void anEmployeeWithTheIDExists(String initials) {
-        database.CreateEmployee("ffna");
-
-    }
 
     @When("the employee creates a project with project number {int} and project name {string}")
     public void the_employee_creates_a_project_with_project_number_and_project_name(Integer ID, String name) {
