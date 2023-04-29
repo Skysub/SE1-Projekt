@@ -10,9 +10,11 @@ public class Project implements Serializable{
     ArrayList<Employee> employees = new ArrayList<>();
     Employee projectManager = null;
     int ID;
+    String name;
 
-    public Project(int ID) {
+    public Project(int ID, String name) {
     	this.ID = ID;
+        this.name = name;
     }
     
     public void addActivity(Activity activity){
@@ -21,5 +23,13 @@ public class Project implements Serializable{
 
     public void addEmployee(Employee e){
         this.employees.add(e);
+    }
+
+    public Object getName() {
+        return this.name;
+    }
+
+    public Integer getID() {
+        return this.ID;
     }
 }
