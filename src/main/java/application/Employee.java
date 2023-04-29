@@ -24,6 +24,9 @@ public class Employee implements Serializable {
 
     }
 
+
+    }
+
     //Getters and Setters -----
     public Object getInitials() {
         return initials;
