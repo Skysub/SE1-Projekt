@@ -21,10 +21,11 @@ public class View extends Application {
     static ListView<String> ProjectList = new ListView<>();
     static ListView<String> ProjectActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
-    static VBox employeesView = new VBox();
+    
 
     @Override
     public void start(Stage primaryStage) {
+        
         root.setPadding(new Insets(10));
 
         //Setting up the top part of the window
@@ -37,12 +38,13 @@ public class View extends Application {
         topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
 
         //Defining What is shown in the Employees tab
-        
+        VBox employeesView = new VBox();
         employeesView.setAlignment(Pos.CENTER);
         employeesView.setSpacing(10);
         Label employeesLabel = new Label("Employees");
         Button addEmployeeBtn = new Button("Add Employee");
         updateEmployeeList();
+        updateEmployeeActivityList(null);
 
         employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), addEmployeeBtn);
 
@@ -53,6 +55,7 @@ public class View extends Application {
         Label projectsLabel = new Label("Projects");
         Button addProjectBtn = new Button("Add Project");
         updateProjectList();
+        updateProjectActivityList(null);
         projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), addProjectBtn);
 
         //Defining what is shown in the Personal tab
@@ -66,7 +69,7 @@ public class View extends Application {
 
         root.setTop(topBar);
         root.setCenter(employeesView);
-        employeesBtn.setOnAction(event -> changeToEmployeeView());
+        employeesBtn.setOnAction(event -> root.setCenter(employeesView));
         projectsBtn.setOnAction(event -> root.setCenter(projectsView));
         personalBtn.setOnAction(event -> root.setCenter(personalView));
 
@@ -74,8 +77,6 @@ public class View extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("My Application");
         primaryStage.show();
-
-        database.CreateEmployee("FFNA");
     }
 
     public static void main(String[] args) {
@@ -110,11 +111,5 @@ public class View extends Application {
         for (int i = 0; i < p.getActivities().size(); i++){
             employeeActivityList.getItems().add((String) p.getActivities().get(i).getName());
         }
-    }
-
-    //Change views
-    public static void changeToEmployeeView(){
-        updateEmployeeList();
-        root.setCenter(employeesView);
     }
 }
