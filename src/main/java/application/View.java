@@ -44,7 +44,6 @@ public class View extends Application {
         Label employeesLabel = new Label("Employees");
         Button addEmployeeBtn = new Button("Add Employee");
         updateEmployeeList();
-        updateEmployeeActivityList(null);
 
         employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), addEmployeeBtn);
 
@@ -55,7 +54,6 @@ public class View extends Application {
         Label projectsLabel = new Label("Projects");
         Button addProjectBtn = new Button("Add Project");
         updateProjectList();
-        updateProjectActivityList(null);
         projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), addProjectBtn);
 
         //Defining what is shown in the Personal tab
