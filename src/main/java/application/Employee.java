@@ -8,7 +8,7 @@ public class Employee implements Serializable {
 	
 	ArrayList<Activity> personalActivities = new ArrayList<>();
 	ArrayList<Project> isManagerFor = new ArrayList<>();
-    private static String initials;
+    private String initials;
     private String title;
 
     int workHours;

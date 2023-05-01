@@ -24,15 +24,15 @@ Scenario: Project leader assigns an employee to the workActivity activity1, when
 	When the project manager assigns the employee with the ID "ffna" to the workActivity
 	Then the error message "The employee with ID ffna is already assigned to this activity" is given
 
-#Scenario: An employee tries to assign themselves to an activity when there is a project leader
-#	Given an employee with the ID "ledr" exists
-#	And an employee with the ID "ffna" exists
-#	And a project with project number 23001 and project name "Project fireball" exists
-#	And the project with project number 23001 has a project manager with the ID "ledr"
-#	And the project has an activity with the name "Aktivitet1"
-#	When the employee assigns the employee to the activity
-#	Then the error message "Only the project manager can assign employees" is given
-#
+Scenario: An employee tries to assign themselves to an activity when there is a project leader
+	Given an employee with the ID "ledr" exists
+	And an employee with the ID "test" exists
+	And a project with project number 23001 and project name "Project fireball" exists
+	And the project with project number 23001 has a project manager with the ID "ledr"
+	And the project has a workActivity with the name "Aktivitet1"
+	When the employee with the ID "test" assigns the employee with the ID "test" to the workActivity
+	Then the error message "Only the project manager can assign employees" is given
+
 #Scenario: An employee tries to assign themselves to an activity when there is no project leader
 #	Given an employee with the ID "ffna" exists
 #	And a project with project number 23001 and project name "Project Fireball" exists

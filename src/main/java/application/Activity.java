@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Activity implements Serializable {
 
 	private static final long serialVersionUID = 6969694201337L;
-	private static String name;
+	private  String name;
 	int startWeek, endWeek;
 	protected ArrayList<Employee> employees = new ArrayList<Employee>();
 

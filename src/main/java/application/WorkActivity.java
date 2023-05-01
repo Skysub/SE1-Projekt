@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class WorkActivity extends Activity {
 
@@ -29,11 +30,11 @@ public class WorkActivity extends Activity {
 				employees.add(employee);
 				employee.addActivity(this);
 			} else {
-				throw new IllegalOperationException("The employee with ID "+employee.getInitials()+" is already assigned to this activity");
+				throw new IllegalOperationException(
+						"The employee with ID " + employee.getInitials() + " is already assigned to this activity");
 			}
 		} else {
 			throw new IllegalOperationException("Only the project manager can assign employees");
 		}
 	}
-
 }

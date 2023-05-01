@@ -50,6 +50,16 @@ public class ProjectSteps {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
 	}
+	
+	@When("the employee with the ID {string} assigns the employee with the ID {string} to the workActivity")
+	public void theEmployeeWithTheIDAssignsTheEmployeeWithTheIDToTheWorkActivity(String ID1, String ID2) {
+		try {
+			recentWorkActivity.addEmployee(database.getEmployee(ID1), database.getEmployee(ID2));
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
+	}
+
 
 	@Then("the project with project number {int} and project name {string} exists")
 	public void the_project_with_project_number_and_project_name_exists(Integer ID, String name) {
