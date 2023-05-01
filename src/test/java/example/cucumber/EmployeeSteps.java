@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import application.Database;
 import application.Employee;
 import io.cucumber.java.en.Given;
@@ -13,7 +15,8 @@ import io.cucumber.java.en.When;
 public class EmployeeSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
-	public Employee recentEmployee;
+	Employee recentEmployee;
+	ArrayList<Employee> empList;
 
 	public EmployeeSteps(Database database, ErrorMessageHolder errorMessageHolder) {
 		this.database = database;
@@ -68,9 +71,23 @@ public class EmployeeSteps {
 	public void theEmployeeDeletesTheEmployeeProfile() {
 		database.deleteEmployee(recentEmployee.getInitials());
 	}
+	
+	@When("the employee searches for available employees around week {int}")
+	public void theEmployeeSearchesForAvailableEmployeesAroundWeek(Integer week) {
+	    empList = database.getAvailableEmployees(week);
+	}
 
 	@Then("an employee with the ID {string} does not exist")
 	public void anEmployeeWithTheIDDoesNotExist(String initials) {
 		assertFalse(database.hasEmployee(initials));
 	}
+	
+	@Then("the employee gets a list of employees with the IDs {string} and {string} and {string}")
+	public void theEmployeeGetsAListOfEmployeesWithTheIDsAndAnd(String ID1, String ID2, String ID3) {
+	    assertTrue(empList.contains(database.getEmployee(ID1)));
+	    assertTrue(empList.contains(database.getEmployee(ID2)));
+	    assertTrue(empList.contains(database.getEmployee(ID3)));
+	}
+	
+	
 }

@@ -7,7 +7,7 @@ public abstract class Activity implements Serializable {
 
 	private static final long serialVersionUID = 6969694201337L;
 	private  String name;
-	int startWeek, endWeek;
+	int startWeek = 0, endWeek = 0;
 	protected ArrayList<Employee> employees = new ArrayList<Employee>();
 
 	public Activity(String name) {

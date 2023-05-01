@@ -60,7 +60,6 @@ public class ProjectSteps {
 		}
 	}
 
-
 	@Then("the project with project number {int} and project name {string} exists")
 	public void the_project_with_project_number_and_project_name_exists(Integer ID, String name) {
 		Project project = database.getProject(ID);

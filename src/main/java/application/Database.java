@@ -1,7 +1,9 @@
 package application;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Database implements Serializable {
 	@java.io.Serial
@@ -52,6 +54,23 @@ public class Database implements Serializable {
     public Project getProject(Integer iD) {
         return projects.get(iD);
     }
+
+	public ArrayList<Employee> getAvailableEmployees(Integer week) {
+		ArrayList<Employee> out = new ArrayList<Employee>();
+		
+		for(String x : employees.keySet()) {
+			for(Activity y : employees.get(x).getActivities()) {
+				if((y.endWeek == 0 && y.startWeek ==0) 
+					|| (y.endWeek < week && y.endWeek != 0) 
+					|| (y.startWeek > week  && y.startWeek != 0)) {
+					out.add(employees.get(x));
+					break;
+				}
+			}
+		}
+		
+		return out;
+	}
 
     
 }
