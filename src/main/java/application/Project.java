@@ -39,4 +39,6 @@ public class Project implements Serializable{
     public ArrayList<Activity> getActivities() {
         return activities;
     }
+
+
 }
