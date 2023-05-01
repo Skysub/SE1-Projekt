@@ -10,13 +10,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class CreateProjectSteps {
+public class ProjectSteps {
 
     Database database;
     ErrorMessageHolder errorMessageHolder;
     Project recentProject;
 
-    public CreateProjectSteps(Database database, ErrorMessageHolder errorMessageHolder){
+    public ProjectSteps(Database database, ErrorMessageHolder errorMessageHolder){
         this.database = database;
         this.errorMessageHolder = errorMessageHolder;
     }
