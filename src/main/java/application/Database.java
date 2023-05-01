@@ -25,6 +25,14 @@ public class Database implements Serializable {
         }
     	return employees.get(initials);
     }
+
+    public void deleteEmployee(Object initials) {
+        employees.remove(initials);
+    }
+
+    public boolean hasEmployee(Object initials){
+        return employees.containsValue(initials);
+    }
     
     public Project CreateProject(int ID) {
     	projects.put(ID, new Project(ID, null));
@@ -44,4 +52,6 @@ public class Database implements Serializable {
     public Project getProject(Integer iD) {
         return projects.get(iD);
     }
+
+    
 }

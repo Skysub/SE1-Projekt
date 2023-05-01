@@ -1,6 +1,7 @@
 package example.cucumber;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import application.Database;
@@ -65,6 +66,17 @@ public void theTitleOfTheEmployeeIs(String expectedTitle) {
 public void theEmployeeHasTheTitle(String title) {
     // Write code here that turns the phrase above into concrete actions
     recentEmployee.setTitle(title);
+}
+
+@When("the employee deletes the employee profile")
+public void theEmployeeDeletesTheEmployeeProfile() {
+    // Write code here that turns the phrase above into concrete actions
+    database.deleteEmployee(recentEmployee.getInitials());
+}
+@Then("an employee with the ID {string} does not exist")
+public void anEmployeeWithTheIDDoesNotExist(String initials) {
+    // Write code here that turns the phrase above into concrete actions
+    assertFalse(database.hasEmployee(initials));
 }
 
 }

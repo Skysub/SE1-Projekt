@@ -31,3 +31,9 @@ Feature: Set-Up of an Employee
         And the employee has the title "Sauceman"
         When the employee sets the title of the employee to "Senior Software Engineer"
         Then the title of the employee is "Senior Software Engineer"  
+
+    Scenario: Employee deletes a unique employee
+
+        Given an employee with the ID "ffna" exists
+        When the employee deletes the employee profile 
+        Then an employee with the ID "ffna" does not exist
