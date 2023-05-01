@@ -38,8 +38,8 @@ public class Project implements Serializable {
 	}
 
 	public ArrayList<Activity> getActivities() {
-		return activities;
-	}
+        return activities;
+    }
 
 	public Employee setManager(Employee employee) {
 		projectManager = employee;

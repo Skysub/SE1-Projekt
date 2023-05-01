@@ -32,14 +32,18 @@ public class ProjectSteps {
 	}
 
 	@Given("a project with project number {int} and project name {string} exists")
-	public void theProjectWithProjectNumberAndProjectNameExists(Integer ID, String name) {
+	public void theProjectWithProjectNumberAndProjectNameExists(Integer ID, String name) throws Exception{
 		recentProject = database.CreateProject(ID, name);
 	}
 
 	@When("the employee creates a project with project number {int} and project name {string}")
 	public void the_employee_creates_a_project_with_project_number_and_project_name(Integer ID, String name) {
-		// Write code here that turns the phrase above into concrete actions
-		recentProject = database.CreateProject(ID, name);
+		try {
+			recentProject = database.CreateProject(ID, name);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
+		
 	}
 
 	@When("the project manager assigns the employee with the ID {string} to the workActivity")
