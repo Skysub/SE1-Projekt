@@ -6,44 +6,48 @@ import java.util.List;
 
 import javafx.scene.Node;
 
-public class Project implements Serializable{
+public class Project implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
-	
+
 	ArrayList<Activity> activities = new ArrayList<>();
-    ArrayList<Employee> employees = new ArrayList<>();
-    Employee projectManager = null;
-    int ID;
-    String name;
+	ArrayList<Employee> employees = new ArrayList<>();
+	Employee projectManager = null;
+	int ID;
+	String name;
 
-    public Project(int ID, String name) {
-    	this.ID = ID;
-        this.name = name;
-    }
-    
-    public Activity addActivity(Activity activity){
-        this.activities.add(activity);
-        return activity;
-    }
+	public Project(int ID, String name) {
+		this.ID = ID;
+		this.name = name;
+	}
 
-    public void addEmployee(Employee e){
-        this.employees.add(e);
-    }
+	public WorkActivity addActivity(WorkActivity activity) {
+		this.activities.add(activity);
+		return activity;
+	}
 
-    public Object getName() {
-        return this.name;
-    }
+	public void addEmployee(Employee e) {
+		this.employees.add(e);
+	}
 
-    public Integer getID() {
-        return this.ID;
-    }
+	public Object getName() {
+		return this.name;
+	}
 
-    public ArrayList<Activity> getActivities() {
-        return activities;
-    }
+	public Integer getID() {
+		return this.ID;
+	}
+
+	public ArrayList<Activity> getActivities() {
+		return activities;
+	}
 
 	public Employee setManager(Employee employee) {
 		projectManager = employee;
 		employee.setManagerFor(this);
 		return employee;
+	}
+
+	public Employee getManager() {
+		return projectManager;
 	}
 }

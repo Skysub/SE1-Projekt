@@ -14,7 +14,8 @@ public class DatabaseChecks {
 		Database d = new Database();
 		
 		d.CreateEmployee("test");
-		d.CreateProject(23069).addActivity(new WorkActivity("testAkt"));
+		Project p = d.CreateProject(23069);
+		p.addActivity(new WorkActivity("testAkt", p));
 		
 		
 		//Vi tjekker om databasen kan serialiseres eller om der bliver kastet en exception

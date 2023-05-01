@@ -8,7 +8,7 @@ public abstract class Activity implements Serializable {
 	private static final long serialVersionUID = 6969694201337L;
 	private static String name;
 	int startWeek, endWeek;
-	private ArrayList<Employee> employees = new ArrayList<Employee>();
+	protected ArrayList<Employee> employees = new ArrayList<Employee>();
 
 	public Activity(String name) {
 		this.name = name;
@@ -27,11 +27,6 @@ public abstract class Activity implements Serializable {
 
 	public Object getName() {
 		return name;
-	}
-
-	public void addEmployee(Employee employee) {
-		employees.add(employee);
-		employee.addActivity(this);
 	}
 
 	// Getters and setters ---------
