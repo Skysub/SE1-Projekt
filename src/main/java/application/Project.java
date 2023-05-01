@@ -20,8 +20,9 @@ public class Project implements Serializable{
         this.name = name;
     }
     
-    public void addActivity(Activity activity){
+    public Activity addActivity(Activity activity){
         this.activities.add(activity);
+        return activity;
     }
 
     public void addEmployee(Employee e){
@@ -39,4 +40,10 @@ public class Project implements Serializable{
     public ArrayList<Activity> getActivities() {
         return activities;
     }
+
+	public Employee setManager(Employee employee) {
+		projectManager = employee;
+		employee.setManagerFor(this);
+		return employee;
+	}
 }

@@ -13,7 +13,7 @@ import io.cucumber.java.en.When;
 public class EmployeeSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
-	Employee recentEmployee;
+	public Employee recentEmployee;
 
 	public EmployeeSteps(Database database, ErrorMessageHolder errorMessageHolder) {
 		this.database = database;

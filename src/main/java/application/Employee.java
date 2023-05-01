@@ -7,6 +7,7 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = -7608060694345485735L;
 	
 	ArrayList<Activity> personalActivities = new ArrayList<>();
+	ArrayList<Project> isManagerFor = new ArrayList<>();
     private static String initials;
     private String title;
 
@@ -51,6 +52,10 @@ public class Employee implements Serializable {
     public String getTitle(){
         return title;
     }
+
+	public void setManagerFor(Project project) {
+		isManagerFor.add(project);
+	}
 
 
 }
