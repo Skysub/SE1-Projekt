@@ -56,6 +56,12 @@ public class ActivitySteps {
 	public void anActivityWithTheNameExists(String name) {
 		recentActivity = new WorkActivity(name);
 	}
+	
+	@Given("the activity has a start week of {int} and an end week of {int}")
+	public void theActivityHasAStartWeekOfAndAnEndWeekOf(Integer start, Integer end) {
+		recentActivity.setStartWeek(start);
+		recentActivity.setEndWeek(end);
+	}
 
 	@When("the employee with the ID {string} is added to the activity")
 	public void theEmployeeIsAddedToTheActivity(String initials) {
@@ -67,4 +73,12 @@ public class ActivitySteps {
 		assertTrue(recentActivity.containsEmployee(initials));
 	}
 
+	@When("the employee sets the start week to {int}")
+	public void theEmployeeSetsTheStartWeekTo(Integer startWeek) {
+	    recentActivity.setStartWeek(startWeek);
+	}
+	@When("the employee sets the end week to {int}")
+	public void theEmployeeSetsTheEndWeekTo(Integer endWeek) {
+		recentActivity.setEndWeek(endWeek);
+	}
 }
