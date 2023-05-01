@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 public class EmployeeSteps {
     Database database;
     ErrorMessageHolder errorMessageHolder;
-    Employee employee;
+    Employee recentEmployee;
 
     public EmployeeSteps(Database database, ErrorMessageHolder errorMessageHolder){
         this.database = database;
@@ -23,7 +23,7 @@ public class EmployeeSteps {
 public void aNewEmployeeProfileWithTheIDIsMade(String initials) {
     // Write code here that turns the phrase above into concrete actions
     try{
-        database.CreateEmployee(initials);
+        recentEmployee = database.CreateEmployee(initials);
     } catch(Exception e){
         errorMessageHolder.setErrorMessage(e.getMessage());
     }
@@ -31,12 +31,12 @@ public void aNewEmployeeProfileWithTheIDIsMade(String initials) {
     @Then("The employee has the initials {string}")
 public void theEmployeeHasTheInitials(String expectedInitials) {
     // Write code here that turns the phrase above into concrete actions
-    assertEquals(expectedInitials, database.getEmployee(expectedInitials).getInitials());
+    assertEquals(expectedInitials, recentEmployee.getInitials());
 }
 
 @Given("an employee with the ID {string} exists")
 public void anEmployeeWithTheIDExists(String initials) throws Exception {
-    database.CreateEmployee(initials);
+    recentEmployee = database.CreateEmployee(initials);
 }
 
 @Then("the employee with the ID {string} has the activity with name {string}")

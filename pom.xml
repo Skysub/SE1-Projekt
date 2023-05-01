@@ -34,7 +34,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.5</version>
 				<configuration>
-					<mainClass>application.HelloFX</mainClass>
+					<mainClass>application.View</mainClass>
 				</configuration>
 			</plugin>
             <plugin>
