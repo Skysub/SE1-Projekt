@@ -59,11 +59,12 @@ public class Database implements Serializable {
 		ArrayList<Employee> out = new ArrayList<Employee>();
 		
 		for(String x : employees.keySet()) {
+			out.add(employees.get(x));
 			for(Activity y : employees.get(x).getActivities()) {
-				if((y.endWeek == 0 && y.startWeek ==0) 
+				if(!((y.endWeek == 0 && y.startWeek ==0) 
 					|| (y.endWeek < week && y.endWeek != 0) 
-					|| (y.startWeek > week  && y.startWeek != 0)) {
-					out.add(employees.get(x));
+					|| (y.startWeek > week  && y.startWeek != 0))) {
+					out.remove(employees.get(x));
 					break;
 				}
 			}

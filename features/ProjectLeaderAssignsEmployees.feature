@@ -54,14 +54,14 @@ Scenario: Overview of the employees available at the time the activity should be
 	When the employee searches for available employees around week 14
 	Then the employee gets a list of employees with the IDs "ffna" and "JJCB" and "ledr"
 
-#Scenario: Overview of the employees available at a time the activity is not done
-#	Given an employee with the ID "ffna" exists
-#	And an employee with the ID "JJCB" exists
-#	And an employee with the ID "ledr" exists
-#	And an activity with the name "New activity" exists
-#	And the employee with the ID "ffna" is assigned to the activity
-#	And the employee with the ID "JJCB" is assigned to the activity
-#	And the employee with the ID "ledr" is assigned to the activity
-#	And the activity has a start week of 9 and an end week of 13  
-#	When the employee searches for available employees around week 12
-#	Then the employee gets an empty list
+Scenario: Overview of the employees available at a time the activity is not done
+	Given an employee with the ID "ffna" exists
+	And an employee with the ID "JJCB" exists
+	And an employee with the ID "ledr" exists
+	And an activity with the name "Akt" exists
+	And the employee with the ID "ffna" is added to the activity
+	And the employee with the ID "JJCB" is added to the activity
+	And the employee with the ID "ledr" is added to the activity
+	And the activity has a start week of 9 and an end week of 13  
+	When the employee searches for available employees around week 12
+	Then the employee gets an empty employee list

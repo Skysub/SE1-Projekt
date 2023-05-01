@@ -89,5 +89,10 @@ public class EmployeeSteps {
 	    assertTrue(empList.contains(database.getEmployee(ID3)));
 	}
 	
+	@Then("the employee gets an empty employee list")
+	public void theEmployeeGetsAnEmptyEmployeeList() {
+		assertTrue(empList.isEmpty());
+	}
+	
 	
 }
