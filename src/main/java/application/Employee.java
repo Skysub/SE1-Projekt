@@ -2,9 +2,6 @@ package application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import javafx.scene.Node;
 
 public class Employee implements Serializable {
 	private static final long serialVersionUID = -7608060694345485735L;

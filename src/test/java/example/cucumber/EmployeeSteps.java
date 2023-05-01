@@ -22,7 +22,11 @@ public class EmployeeSteps {
     @When("a new employee profile with the ID {string} is made")
 public void aNewEmployeeProfileWithTheIDIsMade(String initials) {
     // Write code here that turns the phrase above into concrete actions
-    database.CreateEmployee(initials);
+    try{
+        database.CreateEmployee(initials);
+    } catch(Exception e){
+        errorMessageHolder.setErrorMessage(e.getMessage());
+    }
 }
     @Then("The employee has the initials {string}")
 public void theEmployeeHasTheInitials(String expectedInitials) {
@@ -31,7 +35,7 @@ public void theEmployeeHasTheInitials(String expectedInitials) {
 }
 
 @Given("an employee with the ID {string} exists")
-public void anEmployeeWithTheIDExists(String initials) {
+public void anEmployeeWithTheIDExists(String initials) throws Exception {
     database.CreateEmployee(initials);
 }
 
@@ -39,5 +43,10 @@ public void anEmployeeWithTheIDExists(String initials) {
 public void theEmployeeHasTheActivityWithName(String initials, String activityName) {
     // Write code here that turns the phrase above into concrete actions
     assertTrue(database.getEmployee(initials).hasActivity(activityName));
+}
+
+@Then("the error message {string} is given")
+public void theErrorMessageIsGiven(String error) {
+    assertEquals(error, errorMessageHolder.getErrorMessage());
 }
 }

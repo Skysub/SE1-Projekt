@@ -15,8 +15,13 @@ public class Database implements Serializable {
     	projects = new  HashMap<Integer, Project>();
     }
     
-    public Employee CreateEmployee(String initials) {
-    	employees.put(initials, new Employee(initials));
+    public Employee CreateEmployee(String initials) throws Exception {
+        if(employees.containsKey(initials)){
+            throw new Exception("An employee with the ID already exists");
+        }
+        else{
+            employees.put(initials, new Employee(initials));
+        }
     	return employees.get(initials);
     }
     

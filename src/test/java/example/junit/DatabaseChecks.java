@@ -9,7 +9,7 @@ import application.*;
 public class DatabaseChecks {
 
 	@org.junit.jupiter.api.Test // Junit 5
-	public void isDatabaseSerializable() {
+	public void isDatabaseSerializable() throws Exception {
 		//Vi opretter et database objekt og giver det nogle værdier
 		Database d = new Database();
 		
