@@ -11,3 +11,12 @@ Feature: Set-Up of an Employee
         Given an employee with the ID "JJCB" exists
         When a new employee profile with the ID "JJCB" is made
         Then the error message "An employee with the ID already exists" is given
+
+    
+    Scenario: Employee creates an employee profile with less than 4 letters
+        When a new employee profile with the ID "P" is made
+        Then The employee has the initials "P"
+
+    Scenario: Employee creates an employee profile with more than 4 letters
+        When a new employee profile with the ID "JJJCB" is made
+        Then the error message "Employee has too many initials" is given

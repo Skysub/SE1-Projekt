@@ -16,6 +16,7 @@ public class Database implements Serializable {
     }
     
     public Employee CreateEmployee(String initials) throws Exception {
+        if(initials.length() > 4) throw new Exception("Employee has too many initials");
         if(employees.containsKey(initials)){
             throw new Exception("An employee with the ID already exists");
         }
