@@ -8,6 +8,7 @@ public class Employee implements Serializable {
 	
 	ArrayList<Activity> personalActivities = new ArrayList<>();
     private static String initials;
+    private String title;
 
     int workHours;
 
@@ -29,7 +30,6 @@ public class Employee implements Serializable {
         return initials;
     }
 
-
     public boolean hasActivity(String activityName) {
         System.out.println(personalActivities.get(0).getName());
         for(Activity activity : personalActivities){
@@ -40,13 +40,17 @@ public class Employee implements Serializable {
         return false;
     }
 
-
     public ArrayList<Activity> getActivities() {
         return personalActivities;
     }
 
-    //public String findEmployee(){
-//
-    //}
+    public void setTitle(String newTitle){
+        title = newTitle;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
 
 }

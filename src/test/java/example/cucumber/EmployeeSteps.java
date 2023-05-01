@@ -49,4 +49,22 @@ public void theEmployeeHasTheActivityWithName(String initials, String activityNa
 public void theErrorMessageIsGiven(String error) {
     assertEquals(error, errorMessageHolder.getErrorMessage());
 }
+
+@When("the employee sets the title of the employee to {string}")
+public void theEmployeeSetsTheTitleOfTheEmployeeTo(String title) {
+    // Write code here that turns the phrase above into concrete actions
+    recentEmployee.setTitle(title);
+}
+@Then("the title of the employee is {string}")
+public void theTitleOfTheEmployeeIs(String expectedTitle) {
+    // Write code here that turns the phrase above into concrete actions
+    assertEquals(expectedTitle, recentEmployee.getTitle());
+}
+
+@Given("the employee has the title {string}")
+public void theEmployeeHasTheTitle(String title) {
+    // Write code here that turns the phrase above into concrete actions
+    recentEmployee.setTitle(title);
+}
+
 }

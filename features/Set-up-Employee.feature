@@ -20,3 +20,14 @@ Feature: Set-Up of an Employee
     Scenario: Employee creates an employee profile with more than 4 letters
         When a new employee profile with the ID "JJJCB" is made
         Then the error message "Employee has too many initials" is given
+
+    Scenario: Employee inputs information about the unique employee
+        Given an employee with the ID "ffna" exists
+        When the employee sets the title of the employee to "Senior Software Engineer"
+        Then the title of the employee is "Senior Software Engineer"  
+
+    Scenario: Employee updates a unique employee profile
+        Given an employee with the ID "ffna" exists
+        And the employee has the title "Sauceman"
+        When the employee sets the title of the employee to "Senior Software Engineer"
+        Then the title of the employee is "Senior Software Engineer"  
