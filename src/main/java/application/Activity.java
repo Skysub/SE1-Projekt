@@ -2,13 +2,14 @@ package application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Activity implements Serializable {
 
 	private static final long serialVersionUID = 6969694201337L;
 	private  String name;
 	int startWeek = 0, endWeek = 0;
-	protected ArrayList<Employee> employees = new ArrayList<Employee>();
+	protected HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
 	public Activity(String name) {
 		this.name = name;
@@ -25,7 +26,7 @@ public abstract class Activity implements Serializable {
 		this.endWeek = endWeek;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -47,12 +48,7 @@ public abstract class Activity implements Serializable {
 	}
 
 	public boolean containsEmployee(String initials) {
-		for (Employee employee : employees) {
-			if (employee.getInitials().equals(initials)) {
-				return true;
-			}
-		}
-		return false;
+		return employees.containsKey(initials);
 	}
 
 }

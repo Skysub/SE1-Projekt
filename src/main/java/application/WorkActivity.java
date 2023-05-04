@@ -11,23 +11,26 @@ public class WorkActivity extends Activity {
 	public WorkActivity(String name, Project project) {
 		super(name);
 		parentProject = project;
+		project.addActivity(this);
 	}
 
 	public WorkActivity(String name, int startWeek, Project project) {
 		super(name, startWeek);
 		parentProject = project;
+		project.addActivity(this);
 	}
 
 	public WorkActivity(String name, Integer startWeek, Integer endWeek, Project project) {
 		super(name, startWeek, endWeek);
 		parentProject = project;
+		project.addActivity(this);
 	}
 	// ---------------------------------------------------------------------
 
 	public void addEmployee(Employee employee, Employee authority) throws IllegalOperationException {
 		if (parentProject.getManager() == null || parentProject.getManager().getInitials() == authority.getInitials()) {
-			if (!employees.contains(employee)) {
-				employees.add(employee);
+			if (!employees.containsKey(employee.getInitials())) {
+				employees.put(employee.getInitials(), employee);
 				employee.addActivity(this);
 			} else {
 				throw new IllegalOperationException(

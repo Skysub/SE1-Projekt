@@ -2,14 +2,16 @@ package application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Employee implements Serializable {
 	private static final long serialVersionUID = -7608060694345485735L;
 	
-	ArrayList<Activity> personalActivities = new ArrayList<>();
-	ArrayList<Project> isManagerFor = new ArrayList<>();
+	HashMap<String, Activity> personalActivities = new HashMap<String, Activity>();
+	HashMap<Integer, Project> isManagerFor = new HashMap<Integer, Project>();
     private String initials;
     private String title;
+    private static int maxActivities = 20;
 
     int workHours;
 
@@ -19,7 +21,7 @@ public class Employee implements Serializable {
 
 
     public void addActivity(Activity activity){
-        this.personalActivities.add(activity);
+        personalActivities.put(activity.getName(), activity);
     }
 
     public void registerTime(Activity activity, int Time){
@@ -27,22 +29,20 @@ public class Employee implements Serializable {
     }
 
     //Getters and Setters -----
-    public Object getInitials() {
+    public String getInitials() {
         return initials;
     }
 
     public boolean hasActivity(String activityName) {
-        //System.out.println(personalActivities.get(0).getName());
-        for(Activity activity : personalActivities){
-            if (activity.getName().equals(activityName)){
-                return true;
-            }
-        }
-        return false;
+        return personalActivities.containsKey(activityName);
     }
 
     public ArrayList<Activity> getActivities() {
-        return personalActivities;
+		ArrayList<Activity> out = new ArrayList<Activity>();
+        for (HashMap.Entry<String, Activity> x : personalActivities.entrySet()) {
+			out.add(x.getValue());
+		}
+        return out;
     }
 
     public void setTitle(String newTitle){
@@ -54,8 +54,15 @@ public class Employee implements Serializable {
     }
 
 	public void setManagerFor(Project project) {
-		isManagerFor.add(project);
+		isManagerFor.put(project.getID() ,project);
 	}
-
+	
+	public static void setMaxActivities(int value) {
+		maxActivities = value;
+	}
+	
+	public static int getMaxActivities() {
+		return maxActivities;
+	}
 
 }

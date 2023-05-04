@@ -2,6 +2,7 @@ package application;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.scene.Node;
@@ -9,8 +10,9 @@ import javafx.scene.Node;
 public class Project implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
 
-	ArrayList<Activity> activities = new ArrayList<>();
-	ArrayList<Employee> employees = new ArrayList<>();
+	//ArrayList<Activity> activities = new ArrayList<>();
+	HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
+	HashMap<String, Employee> employees = new HashMap<String, Employee>();
 	Employee projectManager = null;
 	int ID;
 	String name;
@@ -21,24 +23,32 @@ public class Project implements Serializable {
 	}
 
 	public WorkActivity addActivity(WorkActivity activity) {
-		this.activities.add(activity);
+		activities.put(activity.getName(), activity);
 		return activity;
 	}
 
 	public void addEmployee(Employee e) {
-		this.employees.add(e);
+		employees.put(e.getInitials(),e);
 	}
 
-	public Object getName() {
+	public String getName() {
 		return this.name;
 	}
 
 	public Integer getID() {
 		return this.ID;
 	}
+	
+	public WorkActivity getActivity(String ID) {
+		return activities.get(ID);
+    }
 
-	public ArrayList<Activity> getActivities() {
-        return activities;
+	public ArrayList<WorkActivity> getActivities() {
+		ArrayList<WorkActivity> out = new ArrayList<WorkActivity>();
+        for (HashMap.Entry<String, WorkActivity> x : activities.entrySet()) {
+			out.add(x.getValue());
+		}
+        return out;
     }
 
 	public Employee setManager(Employee employee) {
