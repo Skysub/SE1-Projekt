@@ -7,19 +7,15 @@ import java.util.List;
 
 import javafx.scene.Node;
 
-public class Project implements Serializable {
+public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
 
-	//ArrayList<Activity> activities = new ArrayList<>();
-	HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
+	//HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
 	HashMap<String, Employee> employees = new HashMap<String, Employee>();
 	Employee projectManager = null;
-	int ID;
-	String name;
 
 	public Project(int ID, String name) {
-		this.ID = ID;
-		this.name = name;
+		super(ID, name);
 	}
 
 	public WorkActivity addActivity(WorkActivity activity) {
