@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-
-=======
 Feature: Divide a project into activities
   Description: An employee or a project manager divides a project into activities
   Actors: Employee or project manager
@@ -32,4 +29,3 @@ Feature: Divide a project into activities
 #    And an activity with the name “New activity” is part of the project
 #    When the employee adds an activity with name “New activity” to the project
 #    Then the error message “Activity already exists” is given
->>>>>>> Stashed changes
