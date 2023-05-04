@@ -1,17 +1,22 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class WorkActivity extends Activity {
+	private static final long serialVersionUID = 6207085657016298521L;
 
 	Project parentProject;
-
+	Template parentTemplate;
+	
 	// Constructors ---------------------------------------------------------
 	public WorkActivity(String name, Project project) {
 		super(name);
 		parentProject = project;
 		project.addActivity(this);
+	}
+	
+	public WorkActivity(String name, Template template) {
+		super(name);
+		parentTemplate = template;
+		template.addActivity(this);
 	}
 
 	public WorkActivity(String name, int startWeek, Project project) {
@@ -26,6 +31,8 @@ public class WorkActivity extends Activity {
 		project.addActivity(this);
 	}
 	// ---------------------------------------------------------------------
+	
+	//-----
 
 	public void addEmployee(Employee employee, Employee authority) throws IllegalOperationException {
 		if (parentProject.getManager() == null || parentProject.getManager().getInitials() == authority.getInitials()) {

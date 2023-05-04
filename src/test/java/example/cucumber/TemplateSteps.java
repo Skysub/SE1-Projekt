@@ -1,6 +1,7 @@
 package example.cucumber;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import application.*;
 import io.cucumber.java.en.Then;
@@ -9,40 +10,35 @@ import io.cucumber.java.en.When;
 public class TemplateSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
+	Template recentTemplate;
 	
-
 	public TemplateSteps(Database database, ErrorMessageHolder errorMessageHolder) {
 		this.database = database;
 		this.errorMessageHolder = errorMessageHolder;
 	}
 	
-	@When("an employee saves the project with ID {string} as a template with the ID {int}")
-	public void anEmployeeSavesTheProjectWithIDAsATemplateWithTheID(String string, Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("an employee saves the project with ID {int} as a template with the ID {int}")
+	public void anEmployeeSavesTheProjectWithIDAsATemplateWithTheID(Integer pID, Integer tID) {
+	    recentTemplate =  database.MakeTemplate(database.getProject(pID), tID);
 	}
 
 	@When("the employee gives the template the name {string}")
-	public void theEmployeeGivesTheTemplateTheName(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void theEmployeeGivesTheTemplateTheName(String name) {
+	    recentTemplate.setName(name);
 	}
 
 	@Then("the template with ID {int} exists")
-	public void theTemplateWithIDExists(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void theTemplateWithIDExists(Integer ID) {
+	    assertTrue(database.hasTemplate(ID)); 
 	}
 
 	@Then("the template with ID {int} has the name {string}")
-	public void theTemplateWithIDHasTheName(Integer int1, String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void theTemplateWithIDHasTheName(Integer ID, String name) {
+	   assertEquals(name, database.getTemplate(ID).getName());
 	}
 
 	@Then("the template with  ID {int} has an activity named {string}")
-	public void theTemplateWithIDHasAnActivityNamed(Integer int1, String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void theTemplateWithIDHasAnActivityNamed(Integer ID, String name) {
+		assertTrue(database.getTemplate(ID).hasActivity(name));
 	}
 }

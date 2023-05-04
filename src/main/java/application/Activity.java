@@ -1,7 +1,6 @@
 package application;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Activity implements Serializable {
@@ -26,11 +25,15 @@ public abstract class Activity implements Serializable {
 		this.endWeek = endWeek;
 	}
 
+	//---
+	
+	
+	// Getters and setters ---------
+	
 	public String getName() {
 		return name;
 	}
-
-	// Getters and setters ---------
+	
 	public int getStartWeek() {
 		return startWeek;
 	}

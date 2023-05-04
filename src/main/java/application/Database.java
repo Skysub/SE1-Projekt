@@ -3,7 +3,6 @@ package application;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Database implements Serializable {
 	@java.io.Serial
@@ -11,10 +10,12 @@ public class Database implements Serializable {
 
 	HashMap<String, Employee> employees;
 	HashMap<Integer, Project> projects; // Vi kan overveje om de skal gemmes som ID eller navn
+	HashMap<Integer, Template> templates;
 
 	public Database() {
 		employees = new HashMap<String, Employee>();
 		projects = new HashMap<Integer, Project>();
+		templates = new HashMap<Integer, Template>();
 	}
 
 	public Employee CreateEmployee(String initials) throws Exception {
@@ -49,6 +50,12 @@ public class Database implements Serializable {
 			throw new IllegalOperationException("Project already exists");
 		}
 	}
+	
+	public Template MakeTemplate(Project project, int templateID) {
+		Template template = project.ConvertToTemplate(templateID);
+		templates.put(templateID, template);
+		return template;
+	}
 
 	public boolean doesTheProjectExist(int ID, String name) {
 		boolean doesTheProjectExist = false;
@@ -61,6 +68,10 @@ public class Database implements Serializable {
 		}
 		return doesTheProjectExist;
 	}
+	
+	public boolean hasTemplate(int ID) {
+		return templates.containsKey(ID);
+	}
 
 	// Getters ---
 	public Employee getEmployee(String initials) {
@@ -69,6 +80,10 @@ public class Database implements Serializable {
 
 	public Project getProject(Integer iD) {
 		return projects.get(iD);
+	}
+	
+	public Template getTemplate(Integer iD) {
+		return templates.get(iD);
 	}
 
 	public ArrayList<Employee> getAvailableEmployees(Integer week) {

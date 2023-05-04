@@ -1,15 +1,15 @@
-#Feature: Templates for easier project creation - Frederik 
-  #Description: Templates used by employees creating new projects to have a quicker start with standard boilerplate. Save projects as templates.
-  #Actors: Employee  
+Feature: Templates for easier project creation - Frederik 
+  Description: Templates used by employees creating new projects to have a quicker start with standard boilerplate. Save projects as templates.
+  Actors: Employee  
 
-#Scenario: Employee saves project as template
-  #Given a project with project number 23069 and project name "new proj" exists
-#	And the project has a workActivity with the name "theAkt"
-  #When an employee saves the project with ID "23069" as a template with the ID 1
-  #And the employee gives the template the name "new template"
-  #Then the template with ID 1 exists
-  #And the template with ID 1 has the name "new template"
-  #And the template with  ID 1 has an activity named "the akt"
+Scenario: Employee saves project as template
+  Given a project with project number 23069 and project name "new proj" exists
+	And the project has a workActivity with the name "theAkt"
+  When an employee saves the project with ID 23069 as a template with the ID 1
+  And the employee gives the template the name "new template"
+  Then the template with ID 1 exists
+  And the template with ID 1 has the name "new template"
+  And the template with  ID 1 has an activity named "theAkt"
 
 #Scenario: Employee creates a project based on a template
   #Given a template with the name "template1" and ID 1 exists

@@ -3,9 +3,6 @@ package application;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import javafx.scene.Node;
 
 public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
@@ -27,6 +24,13 @@ public class Project extends Template implements Serializable {
 		employees.put(e.getInitials(),e);
 	}
 
+	public Template ConvertToTemplate(Integer templateID) {
+		Template out = new Template(templateID, "New template");
+		out.transferActivities(activities);
+		return out;
+	}
+	
+	//----
 	public String getName() {
 		return this.name;
 	}

@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import application.*;
+import application.Database;
+import application.Project;
+import application.WorkActivity;
 
 public class DatabaseChecks {
 

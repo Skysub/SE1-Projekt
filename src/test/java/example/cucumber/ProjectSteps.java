@@ -3,7 +3,11 @@ package example.cucumber;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import application.*;
+import application.Database;
+import application.Employee;
+import application.IllegalOperationException;
+import application.Project;
+import application.WorkActivity;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
