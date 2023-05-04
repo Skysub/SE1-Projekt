@@ -28,13 +28,14 @@ public class ActivitySteps {
 		recentActivity = new WorkActivity(name, database.CreateProject(23001));
 	}
 
-	@Given("the activity has a start week of {int} and an end week of {int}")
+	@Given("the activity has a start week of {int} and an end week of {int} and hours spent {int}")
 	public void theActivityHasAStartWeekOfAndAnEndWeekOf(Integer start, Integer end) {
 		recentActivity.setStartWeek(start);
 		recentActivity.setEndWeek(end);
+		recentActivity.setHours(0);
 	}
 
-	@Given("{int} activities with start week {int} and end week {int} in the project with the ID {int} exist")
+	@Given("{int} activities with start week {int} and end week {int} and hours spent {int} in the project with the ID {int} exist")
 	public void activitiesNamedThroughWithStartWeekAndEndWeekExist(Integer n, Integer sW, Integer eW, Integer pN) {
 		Project p = database.CreateProject(pN);
 		for (int i = 0; i < n; i++) {
@@ -69,6 +70,7 @@ public class ActivitySteps {
 	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek) {
 		recentActivity = new WorkActivity(name, startWeek, endWeek, database.CreateProject(23001));
 	}
+	
 
 	@When("the employee with the ID {string} is added to the activity")
 	public void theEmployeeIsAddedToTheActivity(String initials) throws IllegalOperationException {
@@ -83,6 +85,11 @@ public class ActivitySteps {
 	@When("the employee sets the end week to {int}")
 	public void theEmployeeSetsTheEndWeekTo(Integer endWeek) {
 		recentActivity.setEndWeek(endWeek);
+	}
+	
+	@When("the employee sets the hours spent to {int}")
+	public void theEmployeeSetsTheHoursTo(Integer Hours) {
+		recentActivity.setHours(Hours);
 	}
 
 	@When("an employee with the ID {string} is assigned the activity named {string} in the project with ID {int}")
@@ -107,6 +114,11 @@ public class ActivitySteps {
 	@Then("the activity has the end week {int}")
 	public void theActivityHasTheEndWeek(Integer endWeek) {
 		assertEquals(endWeek, (Integer)recentActivity.getEndWeek());
+	}
+	
+	@Then("the activity has the hours spent{int}")
+	public void theEmployeeSetsTheHours(Integer Hours) {
+		assertEquals(Hours, (Integer)recentActivity.getEndWeek());
 	}
 
 	@Then("the activity has the employee with initials {string}")
