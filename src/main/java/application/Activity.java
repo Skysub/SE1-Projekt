@@ -8,6 +8,7 @@ public abstract class Activity implements Serializable {
 	private static final long serialVersionUID = 6969694201337L;
 	private  String name;
 	int startWeek = 0, endWeek = 0;
+	int hours = 0;
 	protected HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
 	public Activity(String name) {
@@ -23,6 +24,12 @@ public abstract class Activity implements Serializable {
 		this.name = name;
 		this.startWeek = startWeek;
 		this.endWeek = endWeek;
+	}
+	public Activity(String name, int startWeek, int endWeek, int hours) {
+		this.name = name;
+		this.startWeek = startWeek;
+		this.endWeek = endWeek;
+		this.hours = hours;
 	}
 
 	//---
@@ -41,6 +48,9 @@ public abstract class Activity implements Serializable {
 	public int getEndWeek() {
 		return endWeek;
 	}
+	public int getHours() {
+		return hours;
+	}
 
 	public void setStartWeek(int startWeek) {
 		this.startWeek = startWeek;
@@ -48,6 +58,10 @@ public abstract class Activity implements Serializable {
 
 	public void setEndWeek(int endWeek) {
 		this.endWeek = endWeek;
+	}
+	
+	public void setHours(int hours) {
+		this.hours= hours;
 	}
 
 	public boolean containsEmployee(String initials) {
