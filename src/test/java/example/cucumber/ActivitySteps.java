@@ -84,9 +84,12 @@ public class ActivitySteps {
 	}
 
 	@When("an employee with the ID {string} is assigned the activity named {string} in the project with ID {int}")
-	public void anEmployeeWithTheIDIsAssignedTheActivityNamed(String ID, String name, Integer project)
-			throws Exception {
-		database.getProject(project).getActivity(name).addEmployee(database.getEmployee(ID), null);
+	public void anEmployeeWithTheIDIsAssignedTheActivityNamed(String ID, String name, Integer project){
+		try {
+			database.getProject(project).getActivity(name).addEmployee(database.getEmployee(ID), null);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Then("the activity has the name {string}")
@@ -101,7 +104,7 @@ public class ActivitySteps {
 
 	@Then("the activity has the end week {int}")
 	public void theActivityHasTheEndWeek(Integer endWeek) {
-		assertEquals(endWeek, recentActivity.getEndWeek());
+		assertEquals(endWeek, (Integer)recentActivity.getEndWeek());
 	}
 
 	@Then("the activity has the employee with initials {string}")

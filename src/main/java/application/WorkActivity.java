@@ -30,8 +30,8 @@ public class WorkActivity extends Activity {
 	public void addEmployee(Employee employee, Employee authority) throws IllegalOperationException {
 		if (parentProject.getManager() == null || parentProject.getManager().getInitials() == authority.getInitials()) {
 			if (!employees.containsKey(employee.getInitials())) {
-				employees.put(employee.getInitials(), employee);
 				employee.addActivity(this);
+				employees.put(employee.getInitials(), employee);
 			} else {
 				throw new IllegalOperationException(
 						"The employee with ID " + employee.getInitials() + " is already assigned to this activity");

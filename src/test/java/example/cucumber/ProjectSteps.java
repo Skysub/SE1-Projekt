@@ -43,7 +43,6 @@ public class ProjectSteps {
 		} catch (IllegalOperationException e) {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
-		
 	}
 
 	@When("the project manager assigns the employee with the ID {string} to the workActivity")

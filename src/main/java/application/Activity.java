@@ -31,12 +31,12 @@ public abstract class Activity implements Serializable {
 	}
 
 	// Getters and setters ---------
-	public Object getStartWeek() {
-		return this.startWeek;
+	public int getStartWeek() {
+		return startWeek;
 	}
 
-	public Object getEndWeek() {
-		return this.endWeek;
+	public int getEndWeek() {
+		return endWeek;
 	}
 
 	public void setStartWeek(int startWeek) {
