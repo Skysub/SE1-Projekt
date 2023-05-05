@@ -47,4 +47,8 @@ public class WorkActivity extends Activity {
 			throw new IllegalOperationException("Only the project manager can assign employees");
 		}
 	}
+	
+	//--------------------
+	
+
 }
