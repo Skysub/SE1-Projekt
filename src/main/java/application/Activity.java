@@ -58,6 +58,10 @@ public abstract class Activity implements Serializable {
 
 	// Getters and setters ---------
 
+	public String toString(){
+		return name;
+	}
+	
 	public String getName() {
 		return name;
 	}
