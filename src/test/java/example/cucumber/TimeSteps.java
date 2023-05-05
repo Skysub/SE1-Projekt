@@ -54,4 +54,14 @@ public class TimeSteps {
 		assertEquals((float) hours, database.getEmployee(initials).getTimeRegisteredToday(), 0.0166f);
 		// Checks if the amount worked is accurate to within one minute
 	}
+	
+	@Then("the time the project with ID {int} has been worked on is {int} hours")
+	public void theTimeTheProjectWithIDHasBeenWorkedOnIsHours(Integer ID, Integer hours) {
+		assertEquals((float) hours, database.getProject(ID).getTotalRegisteredTime(), 0.0166f);
+	}
+	
+	@Then("the employee with the ID {string} has {int} hours of work registered on the project with ID {int}")
+	public void theEmployeeWithTheIDHasHoursOfWorkRegisteredOnTheProjectWithID(String initials, Integer hours, Integer ID) {
+		assertEquals((float) hours, database.getProject(ID).getTotalRegisteredTime(database.getEmployee(initials)), 0.0166f);
+	}
 }
