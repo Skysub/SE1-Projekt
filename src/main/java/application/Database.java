@@ -42,7 +42,7 @@ public class Database implements Serializable {
 		return projects.get(ID);
 	}
 
-	public Project CreateProject(int ID, String name) throws IllegalOperationException{
+	public Project CreateProject(int ID, String name) throws IllegalOperationException {
 		if (projects.get(ID) == null) {
 			projects.put(ID, new Project(ID, name));
 			return projects.get(ID);
@@ -50,7 +50,7 @@ public class Database implements Serializable {
 			throw new IllegalOperationException("Project already exists");
 		}
 	}
-	
+
 	public Template MakeTemplate(Project project, int templateID) {
 		Template template = project.ConvertToTemplate(templateID);
 		templates.put(templateID, template);
@@ -68,7 +68,7 @@ public class Database implements Serializable {
 		}
 		return doesTheProjectExist;
 	}
-	
+
 	public boolean hasTemplate(int ID) {
 		return templates.containsKey(ID);
 	}
@@ -81,7 +81,7 @@ public class Database implements Serializable {
 	public Project getProject(Integer iD) {
 		return projects.get(iD);
 	}
-	
+
 	public Template getTemplate(Integer iD) {
 		return templates.get(iD);
 	}
@@ -92,8 +92,7 @@ public class Database implements Serializable {
 		for (String x : employees.keySet()) {
 			out.add(employees.get(x));
 			for (Activity y : employees.get(x).getActivities()) {
-				if (!((y.endWeek == 0 && y.startWeek == 0) || (y.endWeek < week && y.endWeek != 0)
-						|| (y.startWeek > week && y.startWeek != 0))) {
+				if (!((y.endWeek == 0 && y.startWeek == 0) || (y.endWeek < week && y.endWeek != 0) || (y.startWeek > week && y.startWeek != 0))) {
 					out.remove(employees.get(x));
 					break;
 				}

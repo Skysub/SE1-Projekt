@@ -10,7 +10,7 @@ import javafx.util.Pair;
 public class Employee implements Serializable {
 	private static final long serialVersionUID = -7608060694345485735L;
 
-	HashMap<String, Activity> personalActivities = new HashMap<String, Activity>();
+	HashMap<String, Activity> activities = new HashMap<String, Activity>();
 	HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>> registeredTime = new HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>>();
 	HashMap<Integer, Project> isManagerFor = new HashMap<Integer, Project>();
 	private String initials;
@@ -25,20 +25,20 @@ public class Employee implements Serializable {
 
 	public void addActivity(Activity activity) throws IllegalOperationException {
 		if (!Overburdened()) {
-			personalActivities.put(activity.getName(), activity);
+			activities.put(activity.getName(), activity);
 		} else {
 			throw new IllegalOperationException("Employees cannot be assigned more than 20 activities in a given week");
 		}
 	}
 
-	//Adds time registered for activity, returns total time worked
+	// Adds time registered for activity, returns total time worked
 	public float registerTime(Activity activity, float hours, LocalDate date) {
 		float t = 0;
 		if (registeredTime.containsKey(activity.getName())) {
 			if (registeredTime.get(activity.getName()).containsKey(date.hashCode())) {
 				t = registeredTime.get(activity.getName()).get(date.hashCode()).getValue();
-			} 
-		}else {
+			}
+		} else {
 			registeredTime.put(activity.getName(), new HashMap<Integer, Pair<LocalDate, Float>>());
 		}
 		registeredTime.get(activity.getName()).put(date.hashCode(), new Pair<LocalDate, Float>(date, t + hours));
@@ -47,13 +47,13 @@ public class Employee implements Serializable {
 
 	// Checks if the employee is about to be assigned an activity when they're at capacity
 	public boolean Overburdened() {
-		if (personalActivities.size() < maxActivities)
+		if (activities.size() < maxActivities)
 			return false;
 
 		// Makes a HashMap and adds the weeks where there are activities, then increments the week
 		// If any of the weeks have to many activities, the function returns true
 		HashMap<Integer, Integer> w = new HashMap<Integer, Integer>();
-		for (HashMap.Entry<String, Activity> entry : personalActivities.entrySet()) {
+		for (HashMap.Entry<String, Activity> entry : activities.entrySet()) {
 			Activity x = entry.getValue();
 			for (int i = x.getStartWeek(); i <= x.getEndWeek(); i++) {
 				if (!w.containsKey(i))
@@ -66,7 +66,7 @@ public class Employee implements Serializable {
 	}
 
 	public boolean hasActivity(String activityName) {
-		return personalActivities.containsKey(activityName); // Uses the built-in function found in HashMap
+		return activities.containsKey(activityName); // Uses the built-in function found in HashMap
 	}
 
 	// Getters and Setters -----
@@ -74,13 +74,13 @@ public class Employee implements Serializable {
 		return initials;
 	}
 
-	public String toString(){
+	public String toString() {
 		return initials;
 	}
 
 	public ArrayList<Activity> getActivities() {
 		ArrayList<Activity> out = new ArrayList<Activity>();
-		for (HashMap.Entry<String, Activity> x : personalActivities.entrySet()) {
+		for (HashMap.Entry<String, Activity> x : activities.entrySet()) {
 			out.add(x.getValue());
 		}
 		return out;
@@ -114,6 +114,27 @@ public class Employee implements Serializable {
 			totalHours += val.get(today.hashCode()).getValue();
 		}
 		return totalHours;
+	}
+
+	public boolean hasVacation(int week) {
+		for (HashMap.Entry<String, Activity> x : activities.entrySet()) {
+			if (!(x.getValue().getStartWeek() == 0 || x.getValue().getEndWeek() == 0)) {
+				if (x.getValue() instanceof PersonalActivity) {
+					PersonalActivity t = (PersonalActivity) x.getValue();
+					if (t.type == PAType.VACATION && x.getValue().getStartWeek() <= week && x.getValue().getEndWeek() >= week) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean hasVacation(int startWeek, int endWeek) {
+		for (int i = startWeek; i < endWeek+1; i++) {
+			if(hasVacation(i)) return true;
+		}
+		return false;
 	}
 
 }
