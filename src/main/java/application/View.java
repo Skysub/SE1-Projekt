@@ -16,10 +16,10 @@ import javafx.stage.Stage;
 
 public class View extends Application {
     static Database database = new Database();
-    static ListView<String> employeeList = new ListView<>();
-    static ListView<String> employeeActivityList = new ListView<>();
-    static ListView<String> ProjectList = new ListView<>();
-    static ListView<String> ProjectActivityList = new ListView<>();
+    static ListView<Employee> employeeList = new ListView<>();
+    static ListView<Activity> employeeActivityList = new ListView<>();
+    static ListView<Project> ProjectList = new ListView<>();
+    static ListView<Activity> ProjectActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
     
 
@@ -85,14 +85,14 @@ public class View extends Application {
         ArrayList<Employee> ListOfEmployees = new ArrayList<Employee>(database.employees.values());
         employeeList.getItems().clear();
         for (int i = 0; i < ListOfEmployees.size(); i++){
-            employeeList.getItems().add((String) ListOfEmployees.get(i).getInitials());
+            employeeList.getItems().add(ListOfEmployees.get(i));
         }
     }
 
     public static void updateEmployeeActivityList(Employee e){
         employeeActivityList.getItems().clear();
         for (int i = 0; i < e.getActivities().size(); i++){
-            employeeActivityList.getItems().add((String) e.getActivities().get(i).getName());
+            employeeActivityList.getItems().add(e.getActivities().get(i));
         }
     }
 
@@ -100,14 +100,14 @@ public class View extends Application {
         ArrayList<Project> ListOfProjects = new ArrayList<Project>(database.projects.values());
         ProjectList.getItems().clear();
         for (int i = 0; i < ListOfProjects.size(); i++){
-            employeeList.getItems().add((String) ListOfProjects.get(i).getName());
+            ProjectList.getItems().add(ListOfProjects.get(i));
         }
     }
 
     public static void updateProjectActivityList(Project p){
         ProjectActivityList.getItems().clear();
         for (int i = 0; i < p.getActivities().size(); i++){
-            employeeActivityList.getItems().add((String) p.getActivities().get(i).getName());
+            ProjectActivityList.getItems().add(p.getActivities().get(i));
         }
     }
 }
