@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
 
-	//HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
+	// HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
 	HashMap<String, Employee> employees = new HashMap<String, Employee>();
 	Employee projectManager = null;
 
@@ -21,7 +21,7 @@ public class Project extends Template implements Serializable {
 	}
 
 	public void addEmployee(Employee e) {
-		employees.put(e.getInitials(),e);
+		employees.put(e.getInitials(), e);
 	}
 
 	public Template ConvertToTemplate(Integer templateID) {
@@ -29,13 +29,13 @@ public class Project extends Template implements Serializable {
 		out.transferActivities(activities);
 		return out;
 	}
-	
-	//----
 
-	public String toString(){
+	// ----
+
+	public String toString() {
 		return ID + " " + name;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
@@ -43,18 +43,18 @@ public class Project extends Template implements Serializable {
 	public Integer getID() {
 		return this.ID;
 	}
-	
+
 	public WorkActivity getActivity(String ID) {
 		return activities.get(ID);
-    }
+	}
 
 	public ArrayList<WorkActivity> getActivities() {
 		ArrayList<WorkActivity> out = new ArrayList<WorkActivity>();
-        for (HashMap.Entry<String, WorkActivity> x : activities.entrySet()) {
+		for (HashMap.Entry<String, WorkActivity> x : activities.entrySet()) {
 			out.add(x.getValue());
 		}
-        return out;
-    }
+		return out;
+	}
 
 	public Employee setManager(Employee employee) {
 		projectManager = employee;

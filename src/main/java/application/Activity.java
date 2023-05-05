@@ -90,8 +90,8 @@ public abstract class Activity implements Serializable {
 		this.hours = hours;
 	}
 
-	public boolean containsEmployee(String initials) {
-		return employees.containsKey(initials);
+	public boolean containsEmployee(Employee  employee) {
+		return employees.containsKey(employee.getInitials());
 	}
 
 	public float getTotalTimeRegistered() {
@@ -116,17 +116,17 @@ public abstract class Activity implements Serializable {
 		return totalHours;
 	}
 
-	public float getTimeRegistered(String initials) {
+	public float getTimeRegistered(Employee  employee) {
 		float totalHours = 0;
-		for (Entry<Integer, Pair<LocalDate, Float>> entry2 : registeredTime.get(initials).entrySet()) {
+		for (Entry<Integer, Pair<LocalDate, Float>> entry2 : registeredTime.get(employee.getInitials()).entrySet()) {
 			Pair<LocalDate, Float> val2 = entry2.getValue();
 			totalHours += val2.getValue();
 		}
 		return totalHours;
 	}
 
-	public float getTimeRegistered(String initials, LocalDate date) {
-		return registeredTime.get(initials).get(date.hashCode()).getValue();
+	public float getTimeRegistered(Employee  employee, LocalDate date) {
+		return registeredTime.get(employee.getInitials()).get(date.hashCode()).getValue();
 	}
 
 }

@@ -74,7 +74,7 @@ public class ProjectSteps {
 	}
 
 	@Then("the activity in the project has the employee with initials {string}")
-	public void theActivityInTheProjectHasTheEmployeeWithInitials(String ID) {
-		assertTrue(recentWorkActivity.containsEmployee(ID));
+	public void theActivityInTheProjectHasTheEmployeeWithInitials(String initials) {
+		assertTrue(recentWorkActivity.containsEmployee(database.getEmployee(initials)));
 	}
 }

@@ -121,13 +121,13 @@ public class ActivitySteps {
 
 	@Then("the activity has the employee with initials {string}")
 	public void theActivityHasTheEmployeeWithInitials(String initials) {
-		assertTrue(recentActivity.containsEmployee(initials));
+		assertTrue(recentActivity.containsEmployee(database.getEmployee(initials)));
 	}
 
 	@Then("the employee with initials {string} is assigned to all the {int} activities of the project with ID {int}")
 	public void theEmployeeIsAssignedToAllTheActivities(String initials, Integer n, Integer ID) {
 		for (int i = 0; i < n; i++) {
-			assertTrue(database.getProject(ID).getActivity(i + "").containsEmployee(initials));
+			assertTrue(database.getProject(ID).getActivity(i + "").containsEmployee(database.getEmployee(initials)));
 		}
 	}
 
