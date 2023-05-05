@@ -33,7 +33,7 @@ public class Project extends Template implements Serializable {
 	//----
 
 	public String toString(){
-		return name;
+		return ID + " " + name;
 	}
 	
 	public String getName() {
