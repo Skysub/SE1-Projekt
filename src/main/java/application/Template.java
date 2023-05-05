@@ -10,6 +10,7 @@ public class Template implements Serializable {
 	HashMap<String, WorkActivity> activities = new HashMap<String, WorkActivity>();
 	int ID;
 	String name;
+	String description;
 
 	public Template(int ID) {
 		this.ID = ID;
@@ -68,5 +69,13 @@ public class Template implements Serializable {
 			out.add(x.getValue());
 		}
 		return out;
+	}
+	
+	public void setDescription(String d) {
+		description = d + "";
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 }

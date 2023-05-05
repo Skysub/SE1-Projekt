@@ -98,6 +98,16 @@ public class ActivitySteps {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
 	}
+	
+	@When("an employee sets the description {string} to the activity")
+	public void anEmployeeSetsTheDescriptionToTheActivity(String description) {
+		recentActivity.setDescription(description);
+	}
+
+	@Then("the activity has the description {string}")
+	public void theActivityHasTheDescription(String description) {
+		assertEquals(description, recentActivity.getDescription());
+	}
 
 	@Then("the activity has the name {string}")
 	public void theActivityHasTheName(String name) {

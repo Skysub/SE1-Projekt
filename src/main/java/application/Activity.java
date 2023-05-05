@@ -10,7 +10,8 @@ import javafx.util.Pair;
 public abstract class Activity implements Serializable {
 
 	private static final long serialVersionUID = 6969694201337L;
-	private String name;
+	String name;
+	String description;
 	int startWeek = 0, endWeek = 0;
 	int hours = 0;
 	protected HashMap<String, Employee> employees = new HashMap<String, Employee>();
@@ -127,6 +128,14 @@ public abstract class Activity implements Serializable {
 
 	public float getTimeRegistered(Employee  employee, LocalDate date) {
 		return registeredTime.get(employee.getInitials()).get(date.hashCode()).getValue();
+	}
+	
+	public void setDescription(String d) {
+		description = d + "";
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 
 }

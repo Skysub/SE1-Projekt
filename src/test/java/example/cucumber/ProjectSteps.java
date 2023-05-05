@@ -66,6 +66,16 @@ public class ProjectSteps {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
 	}
+	
+	@When("an employee sets the description {string} to the project")
+	public void anEmployeeSetsTheDescriptionToTheProject(String description) {
+		recentProject.setDescription(description);
+	}
+
+	@Then("the project has the description {string}")
+	public void theProjectHasTheDescription(String description) {
+	    assertEquals(description, recentProject.getDescription());
+	}
 
 	@Then("the project with project number {int} and project name {string} exists")
 	public void the_project_with_project_number_and_project_name_exists(Integer ID, String name) {
