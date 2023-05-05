@@ -57,6 +57,10 @@ public class Employee implements Serializable {
 		return initials;
 	}
 
+	public String toString(){
+		return this.initials;
+	}
+
 	public ArrayList<Activity> getActivities() {
 		ArrayList<Activity> out = new ArrayList<Activity>();
 		for (HashMap.Entry<String, Activity> x : personalActivities.entrySet()) {
