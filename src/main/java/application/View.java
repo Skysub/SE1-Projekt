@@ -20,24 +20,32 @@ public class View extends Application {
     static Database database = new Database();
     static ListView<Employee> employeeList = new ListView<>();
     static ListView<Activity> employeeActivityList = new ListView<>();
-    static ListView<Project> ProjectList = new ListView<>();
-    static ListView<Activity> ProjectActivityList = new ListView<>();
+    static ListView<Project> projectList = new ListView<>();
+    static ListView<Activity> projectActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
     static HBox topBar = new HBox();
     static VBox employeesView = new VBox();
     static VBox projectsView = new VBox();
     static VBox personalView = new VBox();
     static VBox loginView = new VBox();
+    //TopBar 
+    static Button logOutBtn = new Button("Log out");
     static Button employeesBtn = new Button("Employees");
     static Button projectsBtn = new Button("Projects");
     static Button personalBtn = new Button("Personal");
+    //Employee view
     static Label employeesLabel = new Label("Employees");
     static TextField createEmployeeText = new TextField();
     static Button createEmployeeBtn = new Button("Create Employee");
+    //ProjectView
     static Label projectsLabel = new Label("Projects");
     static TextField createProjectText = new TextField();
     static Button createProjectBtn = new Button("Create Project");
+    static TextField createProjectActivityText = new TextField();
+    static Button createProjectActivityBtn = new Button("Create Activity");
+    //PersonalView
     static Label personalLabel = new Label("Personal");
+
     static TextField loginField = new TextField();
     static Button loginBtn = new Button("Login");
     
@@ -76,7 +84,6 @@ public class View extends Application {
         topBar.setAlignment(Pos.CENTER);
         topBar.setSpacing(20);
         topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
-        root.setTop(topBar);
     }
 
     private static void setupEmployeeView(){
@@ -88,7 +95,9 @@ public class View extends Application {
     private static void setupProjectView(){
         projectsView.setAlignment(Pos.CENTER);
         projectsView.setSpacing(10);
-        projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), createProjectText, createProjectBtn);
+        projectsView.getChildren().addAll(projectsLabel, new HBox(projectList, 
+        new VBox(projectActivityList,createProjectActivityText,createProjectActivityBtn))
+        , createProjectText, createProjectBtn);
     }
 
     private static void setupPersonalView(){
@@ -96,12 +105,4 @@ public class View extends Application {
         personalView.setSpacing(10);
         personalView.getChildren().addAll(personalLabel);
     }
-
-    // ----------------------------------
-
-    //Controller methods TODO put into controller class
-
-    
-    
-
 }
