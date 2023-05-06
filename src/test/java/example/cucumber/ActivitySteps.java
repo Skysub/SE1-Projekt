@@ -48,6 +48,20 @@ public class ActivitySteps {
 			database.getProject(23001).getActivity(String.valueOf(i)).addEmployee(database.getEmployee("JJCB"), null);
 		}
 	}
+	
+	@Given("the project with project number {int} does not have a project leader")
+	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer ID) {
+		assertFalse(database.getProject(ID).HasManager());
+	}
+
+	@When("the employee with ID {string} adds an activity with the name {string} to the project with ID {int}")
+	public void theEmployeeWithIdAddsAnActivityToTheProject(String initials, String name, Integer ID) throws IllegalOperationException {
+		try {
+			database.getProject(ID).addActivity(new WorkActivity(name), database.getEmployee(initials));
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
+	}
 
 	@When("a new workActivity with the name {string} is made")
 	public void aNewWorkActivityWithTheNameIsMade(String name) throws IllegalOperationException {
@@ -136,16 +150,4 @@ public class ActivitySteps {
 			assertTrue(database.getProject(ID).getActivity(String.valueOf(i)).containsEmployee(database.getEmployee(initials)));
 		}
 	}
-
-	@Given("the project with project number {int} does not have a project leader")
-	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer ID) {
-		assertFalse(database.getProject(ID).HasManager());
-	}
-
-	@When("the employee with ID {string} adds an activity with the name {string} to the project with ID {int}")
-	public void theEmployeeWithIdAddsAnActivityToTheProject(String initials, String name, Integer ID) throws IllegalOperationException {
-		database.getProject(ID).addActivity(new WorkActivity(name), database.getEmployee(initials));
-	}
-
-
 }
