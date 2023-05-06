@@ -50,7 +50,7 @@ public class Database implements Serializable {
 			throw new IllegalOperationException("Project already exists");
 		}
 	}
-	
+
 	public Template MakeTemplate(Project project, int templateID) throws IllegalOperationException {
 		Template template = project.ConvertToTemplate(templateID);
 		templates.put(templateID, template);
