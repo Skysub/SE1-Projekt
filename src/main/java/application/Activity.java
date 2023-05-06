@@ -13,7 +13,6 @@ public class Activity implements Serializable {
 	String name;
 	String description;
 	int startWeek = 0, endWeek = 0;
-	int hours = 0;
 	int expectedDuration=0;
 	protected HashMap<String, Employee> employees = new HashMap<String, Employee>();
 	protected HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>> registeredTime = new HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>>();
@@ -31,13 +30,6 @@ public class Activity implements Serializable {
 		this.name = name;
 		this.startWeek = startWeek;
 		this.endWeek = endWeek;
-	}
-
-	public Activity(String name, int startWeek, int endWeek, int hours) {
-		this.name = name;
-		this.startWeek = startWeek;
-		this.endWeek = endWeek;
-		this.hours = hours;
 	}
 
 	// ---
@@ -76,10 +68,6 @@ public class Activity implements Serializable {
 		return endWeek;
 	}
 
-	public int getHours() {
-		return hours;
-	}
-
 	public void setStartWeek(int startWeek) {
 		this.startWeek = startWeek;
 	}
@@ -87,11 +75,12 @@ public class Activity implements Serializable {
 	public void setEndWeek(int endWeek) {
 		this.endWeek = endWeek;
 	}
-
-	public void setHours(int hours) {
-		this.hours = hours;
+	
+	public void setTimeFrame(int startWeek, int endWeek) {
+		this.startWeek = startWeek;
+		this.endWeek = endWeek;
 	}
-
+	
 	public boolean containsEmployee(Employee  employee) {
 		return employees.containsKey(employee.getInitials());
 	}

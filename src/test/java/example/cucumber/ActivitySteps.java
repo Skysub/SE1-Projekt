@@ -53,6 +53,11 @@ public class ActivitySteps {
 	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer ID) {
 		assertFalse(database.getProject(ID).HasManager());
 	}
+	
+	@Given("the activity with the ID {string} in the project with ID {int} has a start week of {int} and an end week of {int}")
+	public void theActivityWithTheIDInTheProjectWithIDHasAStartWeekOfAndAnEndWeekOf(String name, Integer ID, Integer sw, Integer ew) {
+	    database.getProject(ID).getActivity(name).setTimeFrame(sw, ew);
+	}
 
 	@When("the employee with ID {string} adds an activity with the name {string} to the project with ID {int}")
 	public void theEmployeeWithIdAddsAnActivityToTheProject(String initials, String name, Integer ID) throws IllegalOperationException {
@@ -93,11 +98,6 @@ public class ActivitySteps {
 	@When("the employee sets the end week to {int}")
 	public void theEmployeeSetsTheEndWeekTo(Integer endWeek) {
 		recentActivity.setEndWeek(endWeek);
-	}
-
-	@When("the employee sets the hours spent to {int}")
-	public void theEmployeeSetsTheHoursTo(Integer Hours) {
-		recentActivity.setHours(Hours);
 	}
 
 	@When("an employee with the ID {string} is assigned the activity named {string} in the project with ID {int}")
