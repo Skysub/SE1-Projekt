@@ -15,7 +15,7 @@ Feature: Divide a project into activities
     #And a project with project number 23001 and project name "Time registration" exists
     #And the project with project number 23001 has a project manager with the ID "ledr"
     #When the employee with ID "ffna" adds activity to project
-    #Then the error message "Only the project manager can create activities" is given
+    #Then the error message "Only the project manager can create activities when there exists a project manager" is given
 #
   #Scenario: Project manager adds activity to a project
     #Given an employee with the ID "ffna" exists
@@ -28,4 +28,4 @@ Feature: Divide a project into activities
     #And a project with project number 23001 and project name "Time registration" exists
     #And an activity with the name “New activity” is part of the project
     #When the employee adds an activity with name “New activity” to the project
-    #Then the error message “Activity already exists” is given
+    #Then the error message “An activity with the name New activity already exists” is given

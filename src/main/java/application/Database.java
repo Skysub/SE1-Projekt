@@ -51,7 +51,7 @@ public class Database implements Serializable {
 		}
 	}
 
-	public Template MakeTemplate(Project project, int templateID) {
+	public Template MakeTemplate(Project project, int templateID) throws IllegalOperationException {
 		Template template = project.ConvertToTemplate(templateID);
 		templates.put(templateID, template);
 		return template;
@@ -100,14 +100,6 @@ public class Database implements Serializable {
 		}
 
 		return out;
-	}
-
-	public boolean projectHasProjectManager(int ID){
-		Project project = getProject(ID);
-		if(project == null){
-			return false;
-		}
-		return project.getManager() != null;
 	}
 
 }

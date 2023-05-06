@@ -19,8 +19,8 @@ public class ActivitySteps {
 	}
 
 	@Given("an activity with the name {string} exists")
-	public void anActivityWithTheNameExists(String name) {
-		recentActivity = new WorkActivity(name, database.CreateProject(23001));
+	public void anActivityWithTheNameExists(String name) throws IllegalOperationException {
+		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name));
 	}
 
 	@Given("the activity has a start week of {int} and an end week of {int}")
@@ -30,10 +30,10 @@ public class ActivitySteps {
 	}
 
 	@Given("{int} activities with start week {int} and end week {int} in the project with the ID {int} exist")
-	public void activitiesNamedThroughWithStartWeekAndEndWeekExist(Integer n, Integer sW, Integer eW, Integer pN) {
+	public void activitiesNamedThroughWithStartWeekAndEndWeekExist(Integer n, Integer sW, Integer eW, Integer pN) throws IllegalOperationException {
 		Project p = database.CreateProject(pN);
 		for (int i = 0; i < n; i++) {
-			new WorkActivity(String.valueOf(i), sW, eW, p);
+			p.addActivity(new WorkActivity(String.valueOf(i), sW, eW));
 		}
 	}
 
@@ -50,19 +50,20 @@ public class ActivitySteps {
 	}
 
 	@When("a new workActivity with the name {string} is made")
-	public void aNewWorkActivityWithTheNameIsMade(String name) {
-		recentWorkActivity = new WorkActivity(name, database.CreateProject(23001));
+	public void aNewWorkActivityWithTheNameIsMade(String name) throws IllegalOperationException {
+		recentWorkActivity = database.CreateProject(23001).addActivity(new WorkActivity(name));
 		recentActivity = recentWorkActivity;
 	}
 
 	@When("a new workActivity with the name {string} and start week {int} is made")
-	public void aNewWorkActivityWithTheNameAndStartWeekIsMade(String name, int startWeek) {
-		recentActivity = new WorkActivity(name, startWeek, database.CreateProject(23001));
+	public void aNewWorkActivityWithTheNameAndStartWeekIsMade(String name, int startWeek) throws IllegalOperationException {
+		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name, startWeek));
+
 	}
 
 	@When("a new workActivity with the name {string}, start week {int} is made and end week {int}")
-	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek) {
-		recentActivity = new WorkActivity(name, startWeek, endWeek, database.CreateProject(23001));
+	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek) throws IllegalOperationException {
+		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name, startWeek, endWeek));
 	}
 
 	@When("the employee with the ID {string} is added to the activity")
@@ -93,7 +94,7 @@ public class ActivitySteps {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	@When("an employee sets the description {string} to the activity")
 	public void anEmployeeSetsTheDescriptionToTheActivity(String description) {
 		recentActivity.setDescription(description);
@@ -137,17 +138,18 @@ public class ActivitySteps {
 	}
 
 	@Given("the project with project number {int} does not have a project leader")
-	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer int1) {
-		assertFalse(database.projectHasProjectManager(23001));
+	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer ID) {
+		assertFalse(database.getProject(ID).HasManager());
 	}
+
 	@When("the employee with ID {string} adds an activity to the project")
 	public void theEmployeeWithIdAddsAnActivityToTheProject(String ID) throws IllegalOperationException {
 		database.getEmployee(ID).addActivity(new Activity("newActivity"));
 	}
+
 	@Then("the project has an activity")
 	public void theProjectHasAnActivity() {
 		assertTrue(database.getEmployee("ffna").hasActivity("newActivity"));
 	}
-
 
 }

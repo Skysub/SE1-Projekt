@@ -31,8 +31,8 @@ public class ProjectSteps {
 	}
 
 	@Given("the project has a workActivity with the name {string}")
-	public void theProjectHasAnActivityWithTheName(String name) {
-		recentWorkActivity = recentProject.addActivity(new WorkActivity(name, recentProject));
+	public void theProjectHasAnActivityWithTheName(String name) throws IllegalOperationException {
+		recentWorkActivity = recentProject.addActivity(new WorkActivity(name), recentManager);
 	}
 
 	@Given("a project with project number {int} and project name {string} exists")

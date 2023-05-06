@@ -31,7 +31,7 @@ Scenario: An employee tries to assign themselves to an activity when there is a 
 	And the project with project number 23001 has a project manager with the ID "ledr"
 	And the project has a workActivity with the name "Aktivitet1"
 	When the employee with the ID "ffna" assigns the employee with the ID "ffna" to the workActivity
-	Then the error message "Only the project manager can assign employees" is given
+	Then the error message "Only the project manager can assign employees when a project manager exists" is given
 
 Scenario: An employee tries to assign themselves to an activity when there is no project leader
 	Given an employee with the ID "ffna" exists

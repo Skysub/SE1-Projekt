@@ -21,21 +21,22 @@ public class Template implements Serializable {
 		this.name = name;
 	}
 
-	public WorkActivity addActivity(WorkActivity activity) {
+	public WorkActivity addActivity(WorkActivity activity) throws IllegalOperationException {
 		activities.put(activity.getName(), activity);
+		activity.setParentTemplate(this);
 		return activity;
 	}
 	
 	//------
 	
-	protected void transferActivities(HashMap<String, WorkActivity> a) {
+	protected void transferActivities(HashMap<String, WorkActivity> a) throws IllegalOperationException {
 		for (HashMap.Entry<String, WorkActivity> entry : a.entrySet()) {
 			WorkActivity x = entry.getValue();
-			new WorkActivity(x.getName(), this);
+			addActivity(new WorkActivity(x.getName()));
 		}
 	}
 	
-	public Project ConvertToProject() {
+	public Project ConvertToProject() throws IllegalOperationException {
 		Project out = new Project(ID, name);
 		out.transferActivities(activities);
 		return out;

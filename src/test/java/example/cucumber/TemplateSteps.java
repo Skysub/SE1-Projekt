@@ -18,7 +18,7 @@ public class TemplateSteps {
 	}
 	
 	@When("an employee saves the project with ID {int} as a template with the ID {int}")
-	public void anEmployeeSavesTheProjectWithIDAsATemplateWithTheID(Integer pID, Integer tID) {
+	public void anEmployeeSavesTheProjectWithIDAsATemplateWithTheID(Integer pID, Integer tID) throws IllegalOperationException {
 	    recentTemplate =  database.MakeTemplate(database.getProject(pID), tID);
 	}
 

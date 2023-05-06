@@ -14,9 +14,26 @@ public class Project extends Template implements Serializable {
 	public Project(int ID, String name) {
 		super(ID, name);
 	}
-
-	public WorkActivity addActivity(WorkActivity activity) {
+	
+	public WorkActivity addActivity(WorkActivity activity) throws IllegalOperationException {
+		if(HasManager()) throw new IllegalOperationException("No employee passed while the project has a manager");
 		activities.put(activity.getName(), activity);
+		activity.setParentProject(this);
+		return activity;
+	}
+	
+	public WorkActivity addActivity(WorkActivity activity, Employee authority) throws IllegalOperationException {
+		if (projectManager == null || (authority != null && projectManager.getInitials() == authority.getInitials())) {
+			if (!activities.containsKey(activity.getName())) {
+				activities.put(activity.getName(), activity);
+				activity.setParentProject(this);
+			} else {
+				throw new IllegalOperationException(
+						"An activity with the name " + activity.getName() + " already exists");
+			}
+		} else {
+			throw new IllegalOperationException("Only the project manager can create activities when there exists a project manager");
+		}
 		return activity;
 	}
 
@@ -24,7 +41,7 @@ public class Project extends Template implements Serializable {
 		employees.put(e.getInitials(), e);
 	}
 
-	public Template ConvertToTemplate(Integer templateID) {
+	public Template ConvertToTemplate(Integer templateID) throws IllegalOperationException {
 		Template out = new Template(templateID, "New template");
 		out.transferActivities(activities);
 		return out;
@@ -32,6 +49,10 @@ public class Project extends Template implements Serializable {
 
 	// ----
 
+	public boolean HasManager(){
+		return projectManager != null;
+	}
+	
 	public String toString() {
 		return ID + " " + name;
 	}
@@ -47,12 +68,6 @@ public class Project extends Template implements Serializable {
 	public WorkActivity getActivity(String ID) {
 		return activities.get(ID);
 	}
-
-	//Det her er et infinite loop :(
-	/*public Project getProject(int ID){
-		return getProject(ID);
-	}*/
-
 
 	public ArrayList<WorkActivity> getActivities() {
 		ArrayList<WorkActivity> out = new ArrayList<WorkActivity>();
@@ -79,7 +94,7 @@ public class Project extends Template implements Serializable {
 		}
 		return hoursTotal;
 	}
-	
+
 	public float getTotalRegisteredTime(Employee employee) {
 		float hoursTotal = 0;
 		for (HashMap.Entry<String, WorkActivity> x : activities.entrySet()) {
@@ -87,6 +102,5 @@ public class Project extends Template implements Serializable {
 		}
 		return hoursTotal;
 	}
-
 
 }

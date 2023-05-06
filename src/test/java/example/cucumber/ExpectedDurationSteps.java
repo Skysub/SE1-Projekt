@@ -27,7 +27,7 @@ public class ExpectedDurationSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 
-	@When("the project manager registers {int} hours expected duration on the activity with the name {string} in the project with ID {int}")
+	/*@When("the project manager registers {int} hours expected duration on the activity with the name {string} in the project with ID {int}")
 	public void projectManagerRegistersExpectedDurationOnTheActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name,
 			Integer projectID, String managerID) {
 		recentWorkActivity = new WorkActivity(name, database.CreateProject(23001));
@@ -42,6 +42,6 @@ public class ExpectedDurationSteps {
 	@Then("the activity has {int} hours of expected duration registered ")
 	public void theActivityHasHoursOfExpectedDuration(Integer hours, String managerID) {
 		assertEquals((float) hours, recentWorkActivity.getTimeRegistered(database.getEmployee(managerID)), 0.0166f);
-	}
+	}*/
 
 }
