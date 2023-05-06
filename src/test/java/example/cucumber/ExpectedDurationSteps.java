@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import application.Database;
 import application.Employee;
 import application.IllegalOperationException;
+import application.PersonalActivity;
 import application.Project;
 import application.WorkActivity;
 import io.cucumber.java.en.Given;
@@ -19,8 +20,11 @@ public class ExpectedDurationSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
 	Employee recentManager;
-	WorkActivity recentActivity;
+	WorkActivity recentWorkActivity;
+	PersonalActivity recentPersonalActivity;
 	Project recentProject;
+	
+
 
 	public ExpectedDurationSteps(Database database, ErrorMessageHolder errorMessageHolder) {
 		this.database = database;
@@ -43,13 +47,23 @@ public class ExpectedDurationSteps {
 	public void theActivityHasHoursOfExpectedDuration(Integer hours, String managerID) {
 		assertEquals((float) hours, recentWorkActivity.getTimeRegistered(database.getEmployee(managerID)), 0.0166f);
 	}*/
-	@When("an employee sets the expected duration {int} of the activity")
+	@When("an employee sets the expected duration {float} of the personal activity")
+	public void anEmployeeSetsTheExpectedDurationOfPersonalActivity(float ExpectedDurationPA) {
+		recentPersonalActivity.setExpectedDurationPA(ExpectedDurationPA);
+	}
+	
+	@Then("the personal activity has the expected duration {int}")
+	public void theActivityHasTheExpectedDuration(float expectedDurationPA) {
+		assertEquals(ExpectedDuration, recentPersonalActivity.getExpectedDuration());
+	}
+	
+	@When("a project manager sets the expected duration {float} of the work activity")
 	public void anEmployeeSetsTheExpectedDurationOfActivity(int expectedDuration) {
-		recentActivity.setexpectedDuration(expectedDuration);
+		recentWorkActivity.setExpectedDurationWA(expectedDuration);
 	}
 	
 	@Then("the activity has the expected duration {int}")
 	public void theActivityHasTheExpectedDuration(int expectedDuration) {
-		assertEquals(expectedDuration, recentActivity.getexpectedDuration());
+		assertEquals(ExpectedDuration, recentWorkActivity.getExpectedDuration());
 	}
 }

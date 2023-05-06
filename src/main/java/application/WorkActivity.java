@@ -5,7 +5,7 @@ public class WorkActivity extends Activity {
 
 	Project parentProject;
 	Template parentTemplate;
-	
+	float  ExpectedDurationWA=0;
 	// Constructors ---------------------------------------------------------
 	public WorkActivity(String name) {
 		super(name);
@@ -44,6 +44,9 @@ public class WorkActivity extends Activity {
 	
 	public void setParentTemplate(Template template) {
 		parentTemplate = template;
+	}
+	public void setExpectedDurationWA(float expWA) {
+		ExpectedDurationWA = expWA;
 	}
 
 }

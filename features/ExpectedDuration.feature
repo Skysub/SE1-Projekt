@@ -2,7 +2,7 @@ Feature: expected duration of activity
 Description: A project manager can register an expected duration on a work activity
 Actors: Employee & project manager
 
-#Scenario: A project manager sets expected duration on an activity
+#Scenario: A project manager sets expected duration on a work activity
 #	Given an employee with the ID "ledr" exists
 #	And an employee with the ID "ffna" exists
 #	And a project with project number "23001" and project name "Project fireball" exists
