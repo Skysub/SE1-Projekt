@@ -24,8 +24,12 @@ public class Employee implements Serializable {
 	}
 
 	public void addActivity(Activity activity) throws IllegalOperationException {
-		if (!Overburdened()) {
-			activities.put(activity.getName(), activity);
+		if (!Overburdened() || activity instanceof PersonalActivity) {
+			if (!OnVacation(activity)) {
+				activities.put(activity.getName(), activity);
+			} else {
+				throw new IllegalOperationException("User ffna is on vacation during entire activity");
+			}
 		} else {
 			throw new IllegalOperationException("Employees cannot be assigned more than 20 activities in a given week");
 		}
@@ -63,6 +67,14 @@ public class Employee implements Serializable {
 			}
 		}
 		return false;
+	}
+	
+	private boolean OnVacation(Activity activity) {
+		for (int i = activity.getStartWeek(); i < activity.getEndWeek() + 1; i++) {
+			if (!hasVacation(i))
+				return false;
+		}
+		return true;
 	}
 
 	public boolean hasActivity(String activityName) {
@@ -131,8 +143,9 @@ public class Employee implements Serializable {
 	}
 
 	public boolean hasVacation(int startWeek, int endWeek) {
-		for (int i = startWeek; i < endWeek+1; i++) {
-			if(hasVacation(i)) return true;
+		for (int i = startWeek; i < endWeek + 1; i++) {
+			if (hasVacation(i))
+				return true;
 		}
 		return false;
 	}
