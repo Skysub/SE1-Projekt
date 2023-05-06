@@ -21,6 +21,10 @@ public class View extends Application {
     static ListView<Project> ProjectList = new ListView<>();
     static ListView<Activity> ProjectActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
+    static HBox topBar = new HBox();
+    static VBox employeesView = new VBox();
+    static VBox projectsView = new VBox();
+    static VBox personalView = new VBox();
     
 
     @Override
@@ -29,7 +33,7 @@ public class View extends Application {
         root.setPadding(new Insets(10));
 
         //Setting up the top part of the window
-        HBox topBar = new HBox();
+        
         topBar.setAlignment(Pos.CENTER);
         topBar.setSpacing(20);
         Button employeesBtn = new Button("Employees");
@@ -38,7 +42,7 @@ public class View extends Application {
         topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
 
         //Defining What is shown in the Employees tab
-        VBox employeesView = new VBox();
+        
         employeesView.setAlignment(Pos.CENTER);
         employeesView.setSpacing(10);
         Label employeesLabel = new Label("Employees");
@@ -48,7 +52,7 @@ public class View extends Application {
         employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), addEmployeeBtn);
 
         //Defining what is shown in the Projects tab
-        VBox projectsView = new VBox();
+        
         projectsView.setAlignment(Pos.CENTER);
         projectsView.setSpacing(10);
         Label projectsLabel = new Label("Projects");
@@ -57,7 +61,7 @@ public class View extends Application {
         projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), addProjectBtn);
 
         //Defining what is shown in the Personal tab
-        VBox personalView = new VBox();
+        
         personalView.setAlignment(Pos.CENTER);
         personalView.setSpacing(10);
         Label personalLabel = new Label("Personal");
@@ -79,6 +83,12 @@ public class View extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private static void employeeButtonClick(){
+        root.setCenter(employeesView);
+        updateEmployeeList();
+
     }
 
     public static void updateEmployeeList(){
@@ -109,5 +119,5 @@ public class View extends Application {
         for (int i = 0; i < p.getActivities().size(); i++){
             ProjectActivityList.getItems().add(p.getActivities().get(i));
         }
-    }
+    }  
 }
