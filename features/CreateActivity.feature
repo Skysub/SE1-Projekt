@@ -8,7 +8,7 @@ Feature: Divide a project into activities
     And the project with project number 23001 does not have a project leader
     When the employee with ID "ffna" adds an activity to the project
     Then the project has an activity
-
+#
 #  Scenario: Employee attempts to add an activity to a project with a project manager
 #    Given an employee with the ID "ffna" exists
     #And an employee with the ID "ledr" exists
