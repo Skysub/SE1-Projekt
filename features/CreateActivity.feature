@@ -6,8 +6,8 @@ Feature: Divide a project into activities
     Given an employee with the ID "ffna" exists
     And a project with project number 23001 and project name "Time registration" exists
     And the project with project number 23001 does not have a project leader
-    When the employee with ID "ffna" adds an activity to the project
-    Then the project has an activity
+    When the employee with ID "ffna" adds an activity with the name "new activity" to the project with ID 23001
+    Then the project with ID 23001 has an activity with the name "new activity"
 
 #  Scenario: Employee attempts to add an activity to a project with a project manager
 #    Given an employee with the ID "ffna" exists

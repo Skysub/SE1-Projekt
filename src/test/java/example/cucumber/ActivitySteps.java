@@ -142,14 +142,10 @@ public class ActivitySteps {
 		assertFalse(database.getProject(ID).HasManager());
 	}
 
-	@When("the employee with ID {string} adds an activity to the project")
-	public void theEmployeeWithIdAddsAnActivityToTheProject(String ID) throws IllegalOperationException {
-		database.getEmployee(ID).addActivity(new Activity("newActivity"));
+	@When("the employee with ID {string} adds an activity with the name {string} to the project with ID {int}")
+	public void theEmployeeWithIdAddsAnActivityToTheProject(String initials, String name, Integer ID) throws IllegalOperationException {
+		database.getProject(ID).addActivity(new WorkActivity(name), database.getEmployee(initials));
 	}
 
-	@Then("the project has an activity")
-	public void theProjectHasAnActivity() {
-		assertTrue(database.getEmployee("ffna").hasActivity("newActivity"));
-	}
 
 }
