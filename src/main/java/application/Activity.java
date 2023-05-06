@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 import javafx.util.Pair;
 
-public class Activity implements Serializable {
+public abstract class Activity implements Serializable {
 
 	private static final long serialVersionUID = 6969694201337L;
 	String name;

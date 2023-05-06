@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javafx.util.Pair;
 
@@ -68,7 +70,7 @@ public class Employee implements Serializable {
 		}
 		return false;
 	}
-	
+
 	private boolean OnVacation(Activity activity) {
 		for (int i = activity.getStartWeek(); i < activity.getEndWeek() + 1; i++) {
 			if (!hasVacation(i))
@@ -80,11 +82,15 @@ public class Employee implements Serializable {
 	public boolean hasActivity(String activityName) {
 		return activities.containsKey(activityName); // Uses the built-in function found in HashMap
 	}
-	
+
 	public PersonalActivity RegisterSick(Integer week) throws IllegalOperationException {
-		PersonalActivity pa = new PersonalActivity("sick", week, week, PAType.SICK, this);
+		PersonalActivity pa = new PersonalActivity("Sick in week " + week, week, week, PAType.SICK, this);
 		addActivity(pa);
 		return pa;
+	}
+
+	public void RegisterSickHours(float sickshours, Integer week, LocalDate date) throws IllegalOperationException {
+		activities.get("Sick in week " + week).RegisterTime(this, sickshours, date);
 	}
 
 	// Getters and Setters -----
@@ -156,4 +162,26 @@ public class Employee implements Serializable {
 		return false;
 	}
 
+	public Pair<Float, TreeSet<Integer>> getSicknessReport(Integer sw, Integer ew) {
+		TreeSet<Integer> a = new TreeSet<Integer>();
+		for (int i = sw; i < ew + 1; i++) {
+			if (activities.containsKey("Sick in week " + i)) {
+				Activity t = activities.get("Sick in week " + i);
+				for (int j = t.startWeek; j < ew + 1; j++) {
+					a.add(j);
+				}
+			}
+		}
+		return new Pair<Float, TreeSet<Integer>>(getSickHoursInInterval(sw, ew), a);
+	}
+
+	private Float getSickHoursInInterval(Integer sw, Integer ew) {
+		float hours = 0;
+		for (int i = sw; i < ew + 1; i++) {
+			if (activities.containsKey("Sick in week " + i)) {
+				hours += activities.get("Sick in week " + i).getTotalTimeRegistered();
+			}
+		}
+		return hours;
+	}
 }

@@ -3,10 +3,14 @@ package example.cucumber;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.util.TreeSet;
+
 import application.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import javafx.util.Pair;
 
 public class PersonalActivitySteps {
 
@@ -14,6 +18,7 @@ public class PersonalActivitySteps {
 	ErrorMessageHolder errorMessageHolder;
 	Employee recentEmployee;
 	PersonalActivity recentPA;
+	Pair<Float, TreeSet<Integer>> sicknessReport;
 
 	public PersonalActivitySteps(Database database, ErrorMessageHolder errorMessageHolder) {
 		this.database = database;
@@ -33,6 +38,11 @@ public class PersonalActivitySteps {
 		recentPA.setStartWeek(startWeek);
 		recentPA.setEndWeek(endWeek);
 	}
+	
+	@Given("the employee registers {int} sick workhours during week {int}")
+	public void theEmployeeRegistersSickWorkhoursDuringWeek(Integer sickshours, Integer week) throws IllegalOperationException {
+	    recentEmployee.RegisterSickHours((float) sickshours, week, LocalDate.now());
+	}
 
 	@When("the employee marks the personal activity as a vacation")
 	public void theEmployeeWithTheIDMarksThePersonalActivityAsAVacation() {
@@ -43,6 +53,21 @@ public class PersonalActivitySteps {
 	public void theEmployeeRegistersAsSickDuringWeek(String initials, Integer week) throws IllegalOperationException {
 		recentEmployee = database.getEmployee(initials);
 		recentPA = recentEmployee.RegisterSick(week);
+	}
+	
+	@When("the employee gets a sickness report between week {int} and week {int}")
+	public void theEmployeeAsksToSeeSicknessBetweenWeekAndWeek(Integer sw, Integer ew) {
+	    sicknessReport = recentEmployee.getSicknessReport(sw, ew);
+	}
+
+	@Then("the report states the employee has been sick in week {int}")
+	public void theEmployeeHasBeenSickInWeek(Integer week) {
+		assertTrue(sicknessReport.getValue().contains(week));
+	}
+
+	@Then("the report states the employee has has {int} sick hours in the period")
+	public void theEmployeeHasHasSickHoursInThePeriod(Integer hours) {
+		assertTrue(sicknessReport.getKey() == (float) hours);
 	}
 
 	@Then("the employee with the ID {string} has the personal activity with the name {string}")
