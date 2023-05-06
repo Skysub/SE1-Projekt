@@ -14,22 +14,26 @@ public class Project extends Template implements Serializable {
 	public Project(int ID, String name) {
 		super(ID, name);
 	}
-	
+
 	public WorkActivity addActivity(WorkActivity activity) throws IllegalOperationException {
-		if(HasManager()) throw new IllegalOperationException("No employee passed while the project has a manager");
-		activities.put(activity.getName(), activity);
-		activity.setParentProject(this);
+		if (HasManager())
+			throw new IllegalOperationException("No employee passed while the project has a manager");
+		if (!activities.containsKey(activity.getName())) {
+			activities.put(activity.getName(), activity);
+			activity.setParentProject(this);
+		} else {
+			throw new IllegalOperationException("An activity with the name " + activity.getName() + " already exists");
+		}
 		return activity;
 	}
-	
+
 	public WorkActivity addActivity(WorkActivity activity, Employee authority) throws IllegalOperationException {
 		if (projectManager == null || (authority != null && projectManager.getInitials() == authority.getInitials())) {
 			if (!activities.containsKey(activity.getName())) {
 				activities.put(activity.getName(), activity);
 				activity.setParentProject(this);
 			} else {
-				throw new IllegalOperationException(
-						"An activity with the name " + activity.getName() + " already exists");
+				throw new IllegalOperationException("An activity with the name " + activity.getName() + " already exists");
 			}
 		} else {
 			throw new IllegalOperationException("Only the project manager can create activities when there exists a project manager");
@@ -49,10 +53,10 @@ public class Project extends Template implements Serializable {
 
 	// ----
 
-	public boolean HasManager(){
+	public boolean HasManager() {
 		return projectManager != null;
 	}
-	
+
 	public String toString() {
 		return ID + " " + name;
 	}
