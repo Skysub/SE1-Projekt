@@ -80,6 +80,12 @@ public class Employee implements Serializable {
 	public boolean hasActivity(String activityName) {
 		return activities.containsKey(activityName); // Uses the built-in function found in HashMap
 	}
+	
+	public PersonalActivity RegisterSick(Integer week) throws IllegalOperationException {
+		PersonalActivity pa = new PersonalActivity("sick", week, week, PAType.SICK, this);
+		addActivity(pa);
+		return pa;
+	}
 
 	// Getters and Setters -----
 	public String getInitials() {
