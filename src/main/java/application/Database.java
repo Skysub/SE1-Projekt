@@ -101,4 +101,13 @@ public class Database implements Serializable {
 
 		return out;
 	}
+
+	public boolean projectHasProjectManager(int ID){
+		Project project = getProject(ID);
+		if(project == null){
+			return false;
+		}
+		return project.getManager() != null;
+	}
+
 }

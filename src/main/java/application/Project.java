@@ -1,12 +1,8 @@
 package application;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
-
-import javafx.util.Pair;
 
 public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
@@ -52,6 +48,11 @@ public class Project extends Template implements Serializable {
 		return activities.get(ID);
 	}
 
+	public Project getProject(int ID){
+		return getProject(ID);
+	}
+
+
 	public ArrayList<WorkActivity> getActivities() {
 		ArrayList<WorkActivity> out = new ArrayList<WorkActivity>();
 		for (HashMap.Entry<String, WorkActivity> x : activities.entrySet()) {
@@ -85,4 +86,6 @@ public class Project extends Template implements Serializable {
 		}
 		return hoursTotal;
 	}
+
+
 }

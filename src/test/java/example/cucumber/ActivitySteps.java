@@ -1,16 +1,11 @@
 package example.cucumber;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import application.Database;
-import application.Employee;
-import application.IllegalOperationException;
-import application.Project;
-import application.WorkActivity;
+import application.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import static org.junit.Assert.*;
 
 public class ActivitySteps {
 	Database database;
@@ -38,7 +33,7 @@ public class ActivitySteps {
 	public void activitiesNamedThroughWithStartWeekAndEndWeekExist(Integer n, Integer sW, Integer eW, Integer pN) {
 		Project p = database.CreateProject(pN);
 		for (int i = 0; i < n; i++) {
-			new WorkActivity(i + "", sW, eW, p);
+			new WorkActivity(String.valueOf(i), sW, eW, p);
 		}
 	}
 
@@ -50,7 +45,7 @@ public class ActivitySteps {
 	@Given("the employee is assigned the {int} activities")
 	public void theEmployeeIsAssignedAllActivitiesNamedThrough(Integer amount) throws Exception {
 		for (int i = 0; i < amount; i++) {
-			database.getProject(23001).getActivity(i + "").addEmployee(database.getEmployee("JJCB"), null);
+			database.getProject(23001).getActivity(String.valueOf(i)).addEmployee(database.getEmployee("JJCB"), null);
 		}
 	}
 
@@ -137,8 +132,22 @@ public class ActivitySteps {
 	@Then("the employee with initials {string} is assigned to all the {int} activities of the project with ID {int}")
 	public void theEmployeeIsAssignedToAllTheActivities(String initials, Integer n, Integer ID) {
 		for (int i = 0; i < n; i++) {
-			assertTrue(database.getProject(ID).getActivity(i + "").containsEmployee(database.getEmployee(initials)));
+			assertTrue(database.getProject(ID).getActivity(String.valueOf(i)).containsEmployee(database.getEmployee(initials)));
 		}
 	}
+
+	@Given("the project with project number {int} does not have a project leader")
+	public void theProjectWithProjectNumberDoesNotHaveAProjectLeader(Integer int1) {
+		assertFalse(database.projectHasProjectManager(23001));
+	}
+	@When("the employee with ID {string} adds an activity to the project")
+	public void theEmployeeWithIdAddsAnActivityToTheProject(String ID) throws IllegalOperationException {
+		database.getEmployee(ID).addActivity(new Activity("newActivity"));
+	}
+	@Then("the project has an activity")
+	public void theProjectHasAnActivity() {
+		assertTrue(database.getEmployee("ffna").hasActivity("newActivity"));
+	}
+
 
 }
