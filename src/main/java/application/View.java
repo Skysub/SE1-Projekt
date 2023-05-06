@@ -26,6 +26,7 @@ public class View extends Application {
     static VBox employeesView = new VBox();
     static VBox projectsView = new VBox();
     static VBox personalView = new VBox();
+    static VBox loginView = new VBox();
     static Button employeesBtn = new Button("Employees");
     static Button projectsBtn = new Button("Projects");
     static Button personalBtn = new Button("Personal");
@@ -36,6 +37,8 @@ public class View extends Application {
     static TextField createProjectText = new TextField();
     static Button createProjectBtn = new Button("Create Project");
     static Label personalLabel = new Label("Personal");
+    static TextField loginField = new TextField();
+    static Button loginBtn = new Button("Login");
     
 
     @Override
@@ -46,14 +49,9 @@ public class View extends Application {
         setupTopBar();
         setupEmployeeView();
         setupProjectView();
-        setupPersonalView();      
-        
-        root.setCenter(employeesView);
-        employeesBtn.setOnAction(event -> employeeButtonClick());
-        projectsBtn.setOnAction(event -> projectsButtonClick());
-        personalBtn.setOnAction(event -> personalButtonClick());
-        createProjectBtn.setOnAction(event -> createProjectClick());
-        createEmployeeBtn.setOnAction(event -> createEmployeeClick());
+        setupPersonalView();
+        setupLoginView();
+        root.setCenter(loginView);              
 
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setScene(scene);
@@ -66,6 +64,12 @@ public class View extends Application {
     }
 
     //View Setup methods ----
+    private static void setupLoginView(){
+        loginView.setAlignment(Pos.CENTER);
+        loginView.setSpacing(10);
+        loginView.getChildren().addAll(loginField,loginBtn);
+    }
+
     private static void setupTopBar(){
         topBar.setAlignment(Pos.CENTER);
         topBar.setSpacing(20);
@@ -77,14 +81,12 @@ public class View extends Application {
         employeesView.setAlignment(Pos.CENTER);
         employeesView.setSpacing(10);
         employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), createEmployeeText, createEmployeeBtn);
-        updateEmployeeList();
     }
 
     private static void setupProjectView(){
         projectsView.setAlignment(Pos.CENTER);
         projectsView.setSpacing(10);
         projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), createProjectText, createProjectBtn);
-        updateProjectList();
     }
 
     private static void setupPersonalView(){
@@ -96,67 +98,7 @@ public class View extends Application {
     // ----------------------------------
 
     //Controller methods TODO put into controller class
-    private static void employeeButtonClick(){
-        root.setCenter(employeesView);
-        updateEmployeeList();
-    }
 
-    private static void projectsButtonClick(){
-        root.setCenter(projectsView);
-        updateProjectList();
-    }
-
-    private static void personalButtonClick(){
-        root.setCenter(personalView);
-    }
-
-    private static void createProjectClick(){
-        try {
-            database.CreateProject(0, createProjectText.getText());
-            updateProjectList();
-        } catch (IllegalOperationException e) {
-            createProjectText.setText(e.getMessage());
-        }
-    }
-
-    private static void createEmployeeClick(){
-        try {
-            database.CreateEmployee(createEmployeeText.getText());
-            updateEmployeeList();
-        } catch (Exception e) {
-            createEmployeeText.setText(e.getMessage());
-        }
-    }
-
-    public static void updateEmployeeList(){
-        ArrayList<Employee> ListOfEmployees = new ArrayList<Employee>(database.employees.values());
-        employeeList.getItems().clear();
-        for (int i = 0; i < ListOfEmployees.size(); i++){
-            employeeList.getItems().add(ListOfEmployees.get(i));
-        }
-    }
-
-    public static void updateEmployeeActivityList(Employee e){
-        employeeActivityList.getItems().clear();
-        for (int i = 0; i < e.getActivities().size(); i++){
-            employeeActivityList.getItems().add(e.getActivities().get(i));
-        }
-    }
-
-    public static void updateProjectList(){
-        ArrayList<Project> ListOfProjects = new ArrayList<Project>(database.projects.values());
-        ProjectList.getItems().clear();
-        for (int i = 0; i < ListOfProjects.size(); i++){
-            ProjectList.getItems().add(ListOfProjects.get(i));
-        }
-    }
-
-    public static void updateProjectActivityList(Project p){
-        ProjectActivityList.getItems().clear();
-        for (int i = 0; i < p.getActivities().size(); i++){
-            ProjectActivityList.getItems().add(p.getActivities().get(i));
-        }
-    }
     
     
 
