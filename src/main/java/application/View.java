@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class View extends Application {
+    static Controller controller;
     static Database database = new Database();
     static ListView<Employee> employeeList = new ListView<>();
     static ListView<Activity> employeeActivityList = new ListView<>();
@@ -56,6 +57,7 @@ public class View extends Application {
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setScene(scene);
         primaryStage.setTitle("My Application");
+        controller = new Controller(this, database);
         primaryStage.show();
     }
 
