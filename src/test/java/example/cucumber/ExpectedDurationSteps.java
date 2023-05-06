@@ -19,7 +19,7 @@ public class ExpectedDurationSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
 	Employee recentManager;
-	WorkActivity recentWorkActivity;
+	WorkActivity recentActivity;
 	Project recentProject;
 
 	public ExpectedDurationSteps(Database database, ErrorMessageHolder errorMessageHolder) {
@@ -43,5 +43,13 @@ public class ExpectedDurationSteps {
 	public void theActivityHasHoursOfExpectedDuration(Integer hours, String managerID) {
 		assertEquals((float) hours, recentWorkActivity.getTimeRegistered(database.getEmployee(managerID)), 0.0166f);
 	}*/
-
+	@When("an employee sets the expected duration {int} of the activity")
+	public void anEmployeeSetsTheExpectedDurationOfActivity(int expectedDuration) {
+		recentActivity.setexpectedDuration(expectedDuration);
+	}
+	
+	@Then("the activity has the expected duration {int}")
+	public void theActivityHasTheExpectedDuration(int expectedDuration) {
+		assertEquals(expectedDuration, recentActivity.getexpectedDuration());
+	}
 }
