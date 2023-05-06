@@ -48,9 +48,10 @@ public class Project extends Template implements Serializable {
 		return activities.get(ID);
 	}
 
-	public Project getProject(int ID){
+	//Det her er et infinite loop :(
+	/*public Project getProject(int ID){
 		return getProject(ID);
-	}
+	}*/
 
 
 	public ArrayList<WorkActivity> getActivities() {

@@ -27,7 +27,6 @@ Actors: Employee & project manager
 #	When the employee with the ID "ffna" registers "5" hours as the expected duration
 #	Then the error message "Only the project manager can register expected duration" is given
 #
-#	
 #Scenario: the expected duration gets set to a negative value
 #	Given an employee with the ID "ledr" exists
 #	And an employee with the ID "ffna" exists
