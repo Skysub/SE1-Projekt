@@ -82,7 +82,8 @@ public class Controller {
         }
         else{
             String activityName = viewer.createProjectActivityText.getText();
-            currentProject.addActivity(new WorkActivity(activityName, null, null, currentProject));    
+            currentProject.addActivity(new WorkActivity(activityName, 1, 2, currentProject));
+            updateProjectActivityList(currentProject);    
         } 
     }
 
