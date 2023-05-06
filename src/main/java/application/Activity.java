@@ -13,7 +13,7 @@ public abstract class Activity implements Serializable {
 	String name;
 	String description;
 	int startWeek = 0, endWeek = 0;
-	float  ExpectedDuration=0;
+	float  expectedDuration=0;
 	protected HashMap<String, Employee> employees = new HashMap<String, Employee>();
 	protected HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>> registeredTime = new HashMap<String, HashMap<Integer, Pair<LocalDate, Float>>>();
 
@@ -129,7 +129,7 @@ public abstract class Activity implements Serializable {
 	}
 	
 	
-	public float getexpectedDuration() {
-		return ExpectedDuration;
+	public float getExpectedDuration() {
+		return expectedDuration;
 	}
 }

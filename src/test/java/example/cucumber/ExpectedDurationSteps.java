@@ -54,7 +54,7 @@ public class ExpectedDurationSteps {
 	
 	@Then("the personal activity has the expected duration {int}")
 	public void theActivityHasTheExpectedDuration(float expectedDurationPA) {
-		assertEquals(ExpectedDuration, recentPersonalActivity.getExpectedDuration());
+		assertEquals(expectedDurationPA, recentPersonalActivity.getExpectedDuration(), 0.0166f);
 	}
 	
 	@When("a project manager sets the expected duration {float} of the work activity")
@@ -64,6 +64,6 @@ public class ExpectedDurationSteps {
 	
 	@Then("the activity has the expected duration {int}")
 	public void theActivityHasTheExpectedDuration(int expectedDuration) {
-		assertEquals(ExpectedDuration, recentWorkActivity.getExpectedDuration());
+		assertEquals(expectedDuration, recentWorkActivity.getExpectedDuration(), 0.0166f);
 	}
 }
