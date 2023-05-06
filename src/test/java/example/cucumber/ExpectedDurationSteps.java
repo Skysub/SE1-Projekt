@@ -31,22 +31,6 @@ public class ExpectedDurationSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 
-	/*@When("the project manager registers {int} hours expected duration on the activity with the name {string} in the project with ID {int}")
-	public void projectManagerRegistersExpectedDurationOnTheActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name,
-			Integer projectID, String managerID) {
-		recentWorkActivity = new WorkActivity(name, database.CreateProject(23001));
-		recentManager = database.getProject(projectID).setManager(database.getEmployee(managerID));
-		try {
-			recentWorkActivity.RegisterTime(recentManager, (float) hours, LocalDate.now());
-		} catch (IllegalOperationException e) {
-			errorMessageHolder.setErrorMessage(e.getMessage());
-		}
-	}
-
-	@Then("the activity has {int} hours of expected duration registered ")
-	public void theActivityHasHoursOfExpectedDuration(Integer hours, String managerID) {
-		assertEquals((float) hours, recentWorkActivity.getTimeRegistered(database.getEmployee(managerID)), 0.0166f);
-	}*/
 	@When("an employee sets the expected duration {float} of the personal activity")
 	public void anEmployeeSetsTheExpectedDurationOfPersonalActivity(float ExpectedDurationPA) {
 		recentPersonalActivity.setExpectedDurationPA(ExpectedDurationPA);
