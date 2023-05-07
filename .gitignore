@@ -1,4 +1,5 @@
 /target/
+/codemr/
 
 # Compiled class file
 *.class
