@@ -102,6 +102,17 @@ public class Controller {
         } 
     }
 
+    private static void createPersonalActivityClick(){
+        String activityName = viewer.createPersonalActivityText.getText();
+        if(!activityName.equals("")){
+            try {
+                loggedInUser.addActivity(new PersonalActivity(activityName, PAType.OTHER, loggedInUser));
+            } catch (IllegalOperationException e) {
+                viewer.createPersonalActivityText.setText(e.getMessage());
+            }
+        }
+    }
+
     private static void createEmployeeClick(){
         String initials = viewer.createEmployeeText.getText();
         if (!initials.equals("")){
