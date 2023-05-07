@@ -60,7 +60,11 @@ public class ExpectedDurationSteps {
 	@When("the employee with the ID {string} registers {int} hours as the expected duration in the workActivity with the name {string} in the project with ID {int}")
 	public void theEmployeeWithTheIDRegistersHoursAsTheExpectedDurationInTheWorkActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name, Integer ID) {
 		recentWorkActivity = database.getProject(ID).getActivity(name);
-		recentWorkActivity.setExpectedDuration((float)hours,database.getEmployee(initials));
+		try {
+			recentWorkActivity.setExpectedDuration((float)hours,database.getEmployee(initials));
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 	
 	@Then("the activity has {int} hours as the expected duration")

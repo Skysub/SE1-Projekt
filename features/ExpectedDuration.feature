@@ -18,15 +18,15 @@ Scenario: There is no project manager and an employee sets the expected duration
 	When the employee with the ID "ffna" registers 5 hours as the expected duration in the workActivity with the name "Aktivitet1" in the project with ID 23001
   Then the activity has 5 hours as the expected duration
 
-#Scenario: There is a project manager and an employee sets the expected duration
-#	Given an employee with the ID "ledr" exists
-#	And an employee with the ID "ffna" exists
-#	And a project with project number "23001" and project name "Project fireball" exists
-#	And the project with project number "23001" has a project manager with the ID "ledr"
-#	And the project has a workActivity with the name "Aktivitet1"
-#	When the employee with the ID "ffna" registers "5" hours as the expected duration
-#	Then the error message "Only the project manager can register expected duration" is given
-#
+Scenario: There is a project manager and an employee sets the expected duration
+	Given an employee with the ID "ledr" exists
+	And an employee with the ID "ffna" exists
+	And a project with project number 23001 and project name "proj1" exists
+	And the project with project number 23001 has a project manager with the ID "ledr"
+	And the project has a workActivity with the name "Aktivitet1"
+	When the employee with the ID "ffna" registers 5 hours as the expected duration in the workActivity with the name "Aktivitet1" in the project with ID 23001
+	Then the error message "Only the project manager can register expected duration" is given
+
 #Scenario: the expected duration gets set to a negative value
 #	Given an employee with the ID "ledr" exists
 #	And an employee with the ID "ffna" exists
