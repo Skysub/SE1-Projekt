@@ -49,7 +49,6 @@ public class View extends Application {
     static Label personalLabel = new Label("Personal");
     static TextField createPersonalActivityText = new TextField();
     static Button createPersonalActivityBtn = new Button("Create Activity");
-    static Menu createPersonalActivityMenu = new Menu("Type");
 
 
     static TextField loginField = new TextField();
@@ -110,7 +109,6 @@ public class View extends Application {
         personalView.setAlignment(Pos.CENTER);
         personalView.setSpacing(10);
         personalView.getChildren().addAll(personalLabel,
-                                        new VBox(personalActivityList , new HBox(createPersonalActivityText, 
-                                        createPersonalActivityText, createPersonalActivityBtn)));
+                        new HBox(personalActivityList, new VBox(createPersonalActivityText, createPersonalActivityBtn)));
     }
 }
