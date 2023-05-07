@@ -17,7 +17,7 @@ public class Controller {
         
         try {
 			db.CreateEmployee("TEST");
-		} catch (Exception e) {
+		} catch (IllegalOperationException e) {
 			e.printStackTrace();
 		}
 
@@ -74,12 +74,15 @@ public class Controller {
     }
 
     private static void createProjectClick(){
-        try {
-            database.CreateProject(0, viewer.createProjectText.getText());
-            updateProjectList();
-        } catch (IllegalOperationException e) {
-            viewer.createProjectText.setText(e.getMessage());
-        }
+        String projectName = viewer.createProjectText.getText();
+        if(!projectName.equals("")){
+            try {
+                database.CreateProject(0, projectName);
+                updateProjectList();
+            } catch (IllegalOperationException e) {
+                viewer.createProjectText.setText(e.getMessage());
+            }
+        }   
     }
 
     private static void createProjectActivityClick(){
@@ -89,22 +92,27 @@ public class Controller {
         }
         else{
             String activityName = viewer.createProjectActivityText.getText();
-            try {
-				currentProject.addActivity(new WorkActivity(activityName, 1, 2));
-			} catch (IllegalOperationException e) {
-				e.printStackTrace();				
-			}
-            updateProjectActivityList(currentProject);    
+            if (!activityName.equals("")){
+                try {
+                    currentProject.addActivity(new WorkActivity(activityName, 1, 2));
+                } catch (IllegalOperationException e) {
+                    e.printStackTrace();				
+                }
+                updateProjectActivityList(currentProject); 
+            }           
         } 
     }
 
     private static void createEmployeeClick(){
-        try {
-            database.CreateEmployee(viewer.createEmployeeText.getText());
-            updateEmployeeList();
-        } catch (Exception e) {
-            viewer.createEmployeeText.setText(e.getMessage());
-        }
+        String initials = viewer.createEmployeeText.getText();
+        if (!initials.equals("")){
+            try {
+                database.CreateEmployee(initials);
+                updateEmployeeList();
+            } catch (IllegalOperationException e) {
+                viewer.createEmployeeText.setText(e.getMessage());
+            }
+        } 
     }
 
     public static void updateEmployeeList(){
