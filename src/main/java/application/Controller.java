@@ -27,6 +27,7 @@ public class Controller {
         viewer.createProjectBtn.setOnAction(event -> createProjectClick());
         viewer.createEmployeeBtn.setOnAction(event -> createEmployeeClick());
         viewer.createProjectActivityBtn.setOnAction(event -> createProjectActivityClick());
+        viewer.createPersonalActivityBtn.setOnAction(event -> createPersonalActivityClick());
 
         viewer.employeeList.setOnMouseClicked(event -> updateEmployeeActivityList(viewer.employeeList.getSelectionModel().getSelectedItem()));
         viewer.projectList.setOnMouseClicked(event -> updateProjectActivityList(viewer.projectList.getSelectionModel().getSelectedItem()));
@@ -62,6 +63,7 @@ public class Controller {
     private static void personalButtonClick(){
         if(loggedInUser != null){
             viewer.root.setCenter(viewer.personalView);
+            updatePersonalActivityList();
         }
         //TODO give error message
     }
@@ -110,6 +112,7 @@ public class Controller {
             } catch (IllegalOperationException e) {
                 viewer.createPersonalActivityText.setText(e.getMessage());
             }
+            updatePersonalActivityList();
         }
     }
 
@@ -156,7 +159,7 @@ public class Controller {
         }
     }
 
-    public static void updatePersonalProjectList(){
+    public static void updatePersonalActivityList(){
         viewer.personalActivityList.getItems().clear();
         for (int i = 0; i < loggedInUser.getActivities().size(); i++){
             viewer.personalActivityList.getItems().add(loggedInUser.getActivities().get(i));
