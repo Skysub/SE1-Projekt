@@ -1,8 +1,10 @@
 package application;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Database implements Serializable {
 	@java.io.Serial
@@ -63,6 +65,25 @@ public class Database implements Serializable {
 		Template template = project.ConvertToTemplate(templateID);
 		templates.put(templateID, template);
 		return template;
+	}
+	
+	public int CalcNextProjectID() {
+		int highest = 0;
+		for (Entry<Integer, Project> entry : projects.entrySet()) {
+			int ID = entry.getKey();
+			if(ID > highest) ID = highest;
+		}
+		float t = highest/1000f;
+		int year = (int) t;
+		int nowyear = LocalDate.now().getYear();
+		int outID;
+		if(year != nowyear) {
+			outID = (nowyear * 1000 + 1);
+		}
+		else {
+			outID = highest++;
+		}
+		return outID;
 	}
 
 	public boolean doesTheProjectExist(int ID, String name) {
