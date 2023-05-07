@@ -37,17 +37,17 @@ public class ExpectedDurationSteps {
 	}
 	
 	@Then("the personal activity has the expected duration {int}")
-	public void theActivityHasTheExpectedDuration(float expectedDurationPA) {
+	public void thePersonalActivityHasTheExpectedDuration(float expectedDurationPA) {
 		assertEquals(expectedDurationPA, recentPersonalActivity.getExpectedDuration(), 0.0166f);
 	}
 	
 	@When("a project manager sets the expected duration {float} of the work activity")
-	public void anEmployeeSetsTheExpectedDurationOfActivity(int expectedDuration) {
+	public void anEmployeeSetsTheExpectedDurationOfActivity(float expectedDuration) {
 		recentWorkActivity.setExpectedDurationWA(expectedDuration);
 	}
 	
-	@Then("the activity has the expected duration {int}")
-	public void theActivityHasTheExpectedDuration(int expectedDuration) {
+	@Then("the work activity has the expected duration {float}")
+	public void theWorkActivityHasTheExpectedDuration(float expectedDuration) {
 		assertEquals(expectedDuration, recentWorkActivity.getExpectedDuration(), 0.0166f);
 	}
 }
