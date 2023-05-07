@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class PersonalActivity extends Activity implements Serializable {
 	private static final long serialVersionUID = 83121472403813271L;
-	float  ExpectedDurationPA=0;
 	PAType type = PAType.OTHER;
 		
 	public PersonalActivity(String name, Employee employee) {
@@ -34,7 +33,7 @@ public class PersonalActivity extends Activity implements Serializable {
 		return type;
 	}
 	
-	public void setExpectedDurationPA(float expPA) {
-		ExpectedDurationPA = expPA;
+	public void setExpectedDuration(float exp) {
+		expectedDuration = exp;
 	}
 }

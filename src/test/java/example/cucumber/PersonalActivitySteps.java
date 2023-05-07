@@ -67,7 +67,7 @@ public class PersonalActivitySteps {
 
 	@Then("the report states the employee has has {int} sick hours in the period")
 	public void theEmployeeHasHasSickHoursInThePeriod(Integer hours) {
-		assertTrue(sicknessReport.getKey() == (float) hours);
+		assertEquals(sicknessReport.getKey(), (float) hours, 0.0166f);
 	}
 
 	@Then("the employee with the ID {string} has the personal activity with the name {string}")

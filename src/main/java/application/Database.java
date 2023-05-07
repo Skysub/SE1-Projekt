@@ -86,18 +86,6 @@ public class Database implements Serializable {
 		return outID;
 	}
 
-	public boolean doesTheProjectExist(int ID, String name) {
-		boolean doesTheProjectExist = false;
-
-		for (Project project : projects.values()) {
-			if (project.getID().equals(ID) && project.getName().equals(name)) {
-				doesTheProjectExist = true;
-				// System.out.println("Project with number " + ID + "name " + name + " exist");
-			}
-		}
-		return doesTheProjectExist;
-	}
-
 	public boolean hasTemplate(int ID) {
 		return templates.containsKey(ID);
 	}
