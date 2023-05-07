@@ -11,12 +11,12 @@ Scenario: A project manager sets expected duration on a work activity
 	When the employee with the ID "ledr" registers 5 hours as the expected duration in the workActivity with the name "Aktivitet1" in the project with ID 23001
   Then the activity has 5 hours as the expected duration 
 
-#Scenario: There is no project manager and an employee sets the expected duration
-#	Given an employee with the ID "ffna" exists
-#	And a project with project number "23001" and project name "Project fireball" exists
-#	And the project has a workActivity with the name "Aktivitet1"
-#	When the employee with the ID "ffna" registers "5" hours as the expected duration
-  #Then the activity has "5" hours as the expected duration
+Scenario: There is no project manager and an employee sets the expected duration
+	Given an employee with the ID "ffna" exists
+	And a project with project number 23001 and project name "proj1" exists
+	And the project has a workActivity with the name "Aktivitet1"
+	When the employee with the ID "ffna" registers 5 hours as the expected duration in the workActivity with the name "Aktivitet1" in the project with ID 23001
+  Then the activity has 5 hours as the expected duration
 
 #Scenario: There is a project manager and an employee sets the expected duration
 #	Given an employee with the ID "ledr" exists
