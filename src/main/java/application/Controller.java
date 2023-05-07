@@ -17,7 +17,7 @@ public class Controller {
         
         try {
 			db.CreateEmployee("TEST");
-		} catch (IllegalOperationException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

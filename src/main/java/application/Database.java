@@ -18,14 +18,14 @@ public class Database implements Serializable {
 		templates = new HashMap<Integer, Template>();
 	}
 
-	public Employee CreateEmployee(String initials) throws Exception {
+	public Employee CreateEmployee(String initials) throws IllegalOperationException {
 		assert (initials != null);
 		Employee result = null;
 
 		if (initials.length() > 4) //1
-			throw new Exception("Employee has too many initials");//2
+			throw new IllegalOperationException("Employee has too many initials");//2
 		if (hasEmployee(initials)) { //3
-			throw new Exception("An employee with the ID already exists");//4
+			throw new IllegalOperationException("An employee with the ID already exists");//4
 		} else {
 			result = new Employee(initials);
 			employees.put(initials, result); // 5
