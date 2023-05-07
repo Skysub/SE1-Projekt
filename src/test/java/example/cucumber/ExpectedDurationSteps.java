@@ -30,6 +30,12 @@ public class ExpectedDurationSteps {
 		this.database = database;
 		this.errorMessageHolder = errorMessageHolder;
 	}
+	
+//	@Given("a project with project number {int} and project name {string} exists")
+//	public void aProjectWithProjectNumberAndProjectNameExists(int ID, String name) {
+//		recentProject = database.CreateProject(ID, name);
+//	    throw new io.cucumber.java.PendingException();
+//	}
 
 	@When("an employee sets the expected duration {float} of the personal activity")
 	public void anEmployeeSetsTheExpectedDurationOfPersonalActivity(float ExpectedDurationPA) {
@@ -37,7 +43,7 @@ public class ExpectedDurationSteps {
 	}
 	
 	@Then("the personal activity has the expected duration {int}")
-	public void thePersonalActivityHasTheExpectedDuration(float expectedDurationPA) {
+	public void thePersonalActivityHasTheExpectedDuration(int expectedDurationPA) {
 		assertEquals(expectedDurationPA, recentPersonalActivity.getExpectedDuration(), 0.0166f);
 	}
 	
@@ -46,8 +52,20 @@ public class ExpectedDurationSteps {
 		recentWorkActivity.setExpectedDurationWA(expectedDuration);
 	}
 	
-	@Then("the work activity has the expected duration {float}")
-	public void theWorkActivityHasTheExpectedDuration(float expectedDuration) {
+	@Then("the work activity has the expected duration {int}")
+	public void theWorkActivityHasTheExpectedDuration(int expectedDuration) {
 		assertEquals(expectedDuration, recentWorkActivity.getExpectedDuration(), 0.0166f);
 	}
+	
+	@When("the employee with the ID {string} registers {int} hours as the expected duration in the workActivity with the name {string} in the project with ID {int}")
+	public void theEmployeeWithTheIDRegistersHoursAsTheExpectedDurationInTheWorkActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name, Integer ID) {
+		recentWorkActivity = database.getProject(ID).getActivity(name);
+		recentWorkActivity.setExpectedDuration((float)hours,database.getEmployee(initials));
+	}
+	
+	@Then("the activity has {int} hours as the expected duration")
+	public void theActivityHasHoursAsTheExpectedDuration(Integer hours) {
+		assertEquals((float)hours,recentWorkActivity.getExpectedDuration(),0.0166f);
+	}
+
 }

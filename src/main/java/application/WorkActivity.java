@@ -49,4 +49,9 @@ public class WorkActivity extends Activity {
 		ExpectedDurationWA = expWA;
 	}
 
+	public void setExpectedDuration(float hours, Employee employee) {
+		 expectedDuration = hours;
+		
+	}
+
 }
