@@ -28,7 +28,7 @@ public class EmployeeSteps {
 	public void aNewEmployeeProfileWithTheIDIsMade(String initials) {
 		try {
 			recentEmployee = database.CreateEmployee(initials);
-		} catch (Exception e) {
+		} catch (IllegalOperationException e) {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
 	}

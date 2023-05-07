@@ -82,7 +82,11 @@ public class Controller {
         }
         else{
             String activityName = viewer.createProjectActivityText.getText();
-            currentProject.addActivity(new WorkActivity(activityName, 1, 2, currentProject));
+            try {
+				currentProject.addActivity(new WorkActivity(activityName, 1, 2));
+			} catch (IllegalOperationException e) {
+				e.printStackTrace();				
+			}
             updateProjectActivityList(currentProject);    
         } 
     }
