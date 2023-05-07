@@ -21,7 +21,7 @@ public class Database implements Serializable {
 	public Employee CreateEmployee(String initials) throws Exception {
 		if (initials.length() > 4)
 			throw new Exception("Employee has too many initials");
-		if (employees.containsKey(initials)) {
+		if (hasEmployee(initials)) {
 			throw new Exception("An employee with the ID already exists");
 		} else {
 			employees.put(initials, new Employee(initials));
@@ -29,13 +29,14 @@ public class Database implements Serializable {
 		return employees.get(initials);
 	}
 
+	public boolean hasEmployee(Object initials) {
+		return employees.containsValue(initials);
+	}
+
 	public void deleteEmployee(Object initials) {
 		employees.remove(initials);
 	}
 
-	public boolean hasEmployee(Object initials) {
-		return employees.containsValue(initials);
-	}
 
 	public Project CreateProject(int ID) {
 		projects.put(ID, new Project(ID, null));
