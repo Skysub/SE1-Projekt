@@ -2,8 +2,6 @@ package application;
 
 import java.util.ArrayList;
 
-import io.cucumber.plugin.event.EventHandler;
-
 public class Controller {
     
     private static View viewer;
@@ -11,7 +9,7 @@ public class Controller {
     private static Employee loggedInUser;
     private static Project currentProject;
 
-    public Controller(View view, Database db){
+    public Controller(View view, Database db) {
         viewer = view;
         database = db;
         
@@ -22,12 +20,14 @@ public class Controller {
 		}
 
         viewer.loginBtn.setOnAction(event -> loginBtnClick());
+        viewer.logOutBtn.setOnAction(event -> logoutButtonClick());
         viewer.employeesBtn.setOnAction(event -> employeeButtonClick());
         viewer.projectsBtn.setOnAction(event -> projectsButtonClick());
         viewer.personalBtn.setOnAction(event -> personalButtonClick());
         viewer.createProjectBtn.setOnAction(event -> createProjectClick());
         viewer.createEmployeeBtn.setOnAction(event -> createEmployeeClick());
         viewer.createProjectActivityBtn.setOnAction(event -> createProjectActivityClick());
+        viewer.createPersonalActivityBtn.setOnAction(event -> createPersonalActivityClick());
 
         viewer.employeeList.setOnMouseClicked(event -> updateEmployeeActivityList(viewer.employeeList.getSelectionModel().getSelectedItem()));
         viewer.projectList.setOnMouseClicked(event -> updateProjectActivityList(viewer.projectList.getSelectionModel().getSelectedItem()));
@@ -63,6 +63,7 @@ public class Controller {
     private static void personalButtonClick(){
         if(loggedInUser != null){
             viewer.root.setCenter(viewer.personalView);
+            updatePersonalActivityList();
         }
         //TODO give error message
     }
@@ -74,12 +75,15 @@ public class Controller {
     }
 
     private static void createProjectClick(){
-        try {
-            database.CreateProject(0, viewer.createProjectText.getText());
-            updateProjectList();
-        } catch (IllegalOperationException e) {
-            viewer.createProjectText.setText(e.getMessage());
-        }
+        String projectName = viewer.createProjectText.getText();
+        if(!projectName.equals("")){
+            try {
+                database.CreateProject(0, projectName);
+                updateProjectList();
+            } catch (IllegalOperationException e) {
+                viewer.createProjectText.setText(e.getMessage());
+            }
+        }   
     }
 
     private static void createProjectActivityClick(){
@@ -89,22 +93,39 @@ public class Controller {
         }
         else{
             String activityName = viewer.createProjectActivityText.getText();
-            try {
-				currentProject.addActivity(new WorkActivity(activityName, 1, 2));
-			} catch (IllegalOperationException e) {
-				e.printStackTrace();				
-			}
-            updateProjectActivityList(currentProject);    
+            if (!activityName.equals("")){
+                try {
+                    currentProject.addActivity(new WorkActivity(activityName, 1, 2));
+                } catch (IllegalOperationException e) {
+                    e.printStackTrace();				
+                }
+                updateProjectActivityList(currentProject); 
+            }           
         } 
     }
 
-    private static void createEmployeeClick(){
-        try {
-            database.CreateEmployee(viewer.createEmployeeText.getText());
-            updateEmployeeList();
-        } catch (Exception e) {
-            viewer.createEmployeeText.setText(e.getMessage());
+    private static void createPersonalActivityClick(){
+        String activityName = viewer.createPersonalActivityText.getText();
+        if(!activityName.equals("")){
+            try {
+                loggedInUser.addActivity(new PersonalActivity(activityName, PAType.OTHER, loggedInUser));
+            } catch (IllegalOperationException e) {
+                viewer.createPersonalActivityText.setText(e.getMessage());
+            }
+            updatePersonalActivityList();
         }
+    }
+
+    private static void createEmployeeClick(){
+        String initials = viewer.createEmployeeText.getText();
+        if (!initials.equals("")){
+            try {
+                database.CreateEmployee(initials);
+                updateEmployeeList();
+            } catch (IllegalOperationException e) {
+                viewer.createEmployeeText.setText(e.getMessage());
+            }
+        } 
     }
 
     public static void updateEmployeeList(){
@@ -135,6 +156,13 @@ public class Controller {
         viewer.projectActivityList.getItems().clear();
         for (int i = 0; i < p.getActivities().size(); i++){
             viewer.projectActivityList.getItems().add(p.getActivities().get(i));
+        }
+    }
+
+    public static void updatePersonalActivityList(){
+        viewer.personalActivityList.getItems().clear();
+        for (int i = 0; i < loggedInUser.getActivities().size(); i++){
+            viewer.personalActivityList.getItems().add(loggedInUser.getActivities().get(i));
         }
     }
 
