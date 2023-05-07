@@ -8,12 +8,11 @@ public class Controller {
     private static Database database;
     private static Employee loggedInUser;
     private static Project currentProject;
-    private static int currentProjectID;
+    public static int currentProjectID = 23000;
 
     public Controller(View view, Database db) {
         viewer = view;
         database = db;
-        currentProjectID = 23000;
         
         try {
 			db.CreateEmployee("TEST");
