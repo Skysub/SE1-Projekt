@@ -101,5 +101,9 @@ public class Database implements Serializable {
 
 		return out;
 	}
+	
+	public HashMap<Integer, Project> getProjects(){
+		return projects;
+	}
 
 }
