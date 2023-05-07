@@ -18,24 +18,32 @@ public class Database implements Serializable {
 		templates = new HashMap<Integer, Template>();
 	}
 
-	public Employee CreateEmployee(String initials) throws IllegalOperationException {
-		if (initials.length() > 4)
-			throw new IllegalOperationException("Employee has too many initials");
-		if (hasEmployee(initials)) {
-			throw new IllegalOperationException("An employee with the ID already exists");
+	public Employee CreateEmployee(String initials) throws Exception {
+		assert (initials != null);
+		Employee result = null;
+
+		if (initials.length() > 4) //1
+			throw new Exception("Employee has too many initials");//2
+		if (hasEmployee(initials)) { //3
+			throw new Exception("An employee with the ID already exists");//4
 		} else {
-			employees.put(initials, new Employee(initials));
+			result = new Employee(initials);
+			employees.put(initials, result); // 5
 		}
-		return employees.get(initials);
+		assert (employees.containsKey(initials) && 
+				result.getInitials().equals(initials) &&
+				employees.get(initials).equals(result));
+		return result; //6
 	}
 
-	public boolean hasEmployee(String initials) {
-		return employees.containsKey(initials);
+	public boolean hasEmployee(Object initials) {
+		return employees.containsValue(initials);
 	}
 
 	public void deleteEmployee(Object initials) {
 		employees.remove(initials);
 	}
+
 
 	public Project CreateProject(int ID) {
 		projects.put(ID, new Project(ID, null));

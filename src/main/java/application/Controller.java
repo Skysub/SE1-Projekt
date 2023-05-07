@@ -11,7 +11,7 @@ public class Controller {
     private static Employee loggedInUser;
     private static Project currentProject;
 
-    public Controller(View view, Database db){
+    public Controller(View view, Database db) {
         viewer = view;
         database = db;
         
