@@ -74,7 +74,8 @@ public class View extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalOperationException {
+        showoffsetup();
         launch(args);
     }
 
@@ -111,4 +112,34 @@ public class View extends Application {
         personalView.getChildren().addAll(personalLabel,
                         new HBox(personalActivityList, new VBox(createPersonalActivityText, createPersonalActivityBtn)));
     }
+
+
+    private static void showoffsetup() throws IllegalOperationException{
+        database.CreateEmployee("oooo");
+        database.CreateEmployee("abdu");
+        database.CreateEmployee("uuuu");
+        database.CreateEmployee("uul");
+        database.CreateEmployee("fred");
+        database.CreateEmployee("nail");
+        database.CreateEmployee("karr");
+        database.CreateProject(controller.projectID(), "første");
+        database.CreateProject(controller.projectID(), "wuat");
+        database.CreateProject(controller.projectID(), "coolest project");
+        database.CreateProject(controller.projectID(), "who killed captain alex");
+        database.CreateProject(controller.projectID(), "Wusnt me");
+        database.CreateProject(controller.projectID(), "well it was fookin one o' yuss");
+        database.CreateProject(controller.projectID(), "DISGUSTANG");
+        database.getProject(23004).addActivity(new WorkActivity("PEW PEW PEW"));
+        database.getProject(23004).addActivity(new WorkActivity("KEEP GOING KEEP GOING"));
+        database.getProject(23004).addActivity(new WorkActivity("oooh, im so hungry"));
+        database.getProject(23004).addActivity(new WorkActivity("EVERYONE IN UGANDA KNOWS KUNG FU"));
+        database.getProject(23004).addActivity(new WorkActivity("The Tiger Mafia Spy"));
+        database.getProject(23004).addActivity(new WorkActivity("This is serious"));
+        database.getProject(23004).getActivity("The Tiger Mafia Spy").addEmployee(database.getEmployee("uul"),null);
+        database.getProject(23004).getActivity("EVERYONE IN UGANDA KNOWS KUNG FU").addEmployee(database.getEmployee("karr"),null);
+        database.getProject(23004).getActivity("EVERYONE IN UGANDA KNOWS KUNG FU").addEmployee(database.getEmployee("fred"),null);
+        database.getProject(23004).getActivity("The Tiger Mafia Spy").addEmployee(database.getEmployee("karr"),null);
+        database.getProject(23004).getActivity("This is serious").addEmployee(database.getEmployee("uul"),null);
+    }
+
 }

@@ -8,6 +8,7 @@ public class Controller {
     private static Database database;
     private static Employee loggedInUser;
     private static Project currentProject;
+    public static int currentProjectID = 23000;
 
     public Controller(View view, Database db) {
         viewer = view;
@@ -78,7 +79,7 @@ public class Controller {
         String projectName = viewer.createProjectText.getText();
         if(!projectName.equals("")){
             try {
-                database.CreateProject(0, projectName);
+                database.CreateProject(projectID(), projectName);
                 updateProjectList();
             } catch (IllegalOperationException e) {
                 viewer.createProjectText.setText(e.getMessage());
@@ -166,6 +167,9 @@ public class Controller {
         }
     }
 
-
+    public static int projectID(){
+        currentProjectID++;
+        return currentProjectID;
+    }
     
 }
