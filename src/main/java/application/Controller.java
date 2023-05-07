@@ -14,6 +14,12 @@ public class Controller {
     public Controller(View view, Database db){
         viewer = view;
         database = db;
+        
+        try {
+			db.CreateEmployee("TEST");
+		} catch (IllegalOperationException e) {
+			e.printStackTrace();
+		}
 
         viewer.loginBtn.setOnAction(event -> loginBtnClick());
         viewer.employeesBtn.setOnAction(event -> employeeButtonClick());
@@ -27,6 +33,7 @@ public class Controller {
         viewer.projectList.setOnMouseClicked(event -> updateProjectActivityList(viewer.projectList.getSelectionModel().getSelectedItem()));
 
     }
+    
     private static void loginBtnClick(){
         String login = viewer.loginField.getText();
         if(login.equals("Admin")){
