@@ -9,18 +9,45 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class View extends Application {
+    static Controller controller;
     static Database database = new Database();
     static ListView<Employee> employeeList = new ListView<>();
     static ListView<Activity> employeeActivityList = new ListView<>();
-    static ListView<Project> ProjectList = new ListView<>();
-    static ListView<Activity> ProjectActivityList = new ListView<>();
+    static ListView<Project> projectList = new ListView<>();
+    static ListView<Activity> projectActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
+    static HBox topBar = new HBox();
+    static VBox employeesView = new VBox();
+    static VBox projectsView = new VBox();
+    static VBox personalView = new VBox();
+    static VBox loginView = new VBox();
+    //TopBar 
+    static Button logOutBtn = new Button("Log out");
+    static Button employeesBtn = new Button("Employees");
+    static Button projectsBtn = new Button("Projects");
+    static Button personalBtn = new Button("Personal");
+    //Employee view
+    static Label employeesLabel = new Label("Employees");
+    static TextField createEmployeeText = new TextField();
+    static Button createEmployeeBtn = new Button("Create Employee");
+    //ProjectView
+    static Label projectsLabel = new Label("Projects");
+    static TextField createProjectText = new TextField();
+    static Button createProjectBtn = new Button("Create Project");
+    static TextField createProjectActivityText = new TextField();
+    static Button createProjectActivityBtn = new Button("Create Activity");
+    //PersonalView
+    static Label personalLabel = new Label("Personal");
+
+    static TextField loginField = new TextField();
+    static Button loginBtn = new Button("Login");
     
 
     @Override
@@ -28,52 +55,17 @@ public class View extends Application {
         
         root.setPadding(new Insets(10));
 
-        //Setting up the top part of the window
-        HBox topBar = new HBox();
-        topBar.setAlignment(Pos.CENTER);
-        topBar.setSpacing(20);
-        Button employeesBtn = new Button("Employees");
-        Button projectsBtn = new Button("Projects");
-        Button personalBtn = new Button("Personal");
-        topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
-
-        //Defining What is shown in the Employees tab
-        VBox employeesView = new VBox();
-        employeesView.setAlignment(Pos.CENTER);
-        employeesView.setSpacing(10);
-        Label employeesLabel = new Label("Employees");
-        Button addEmployeeBtn = new Button("Add Employee");
-        updateEmployeeList();
-
-        employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), addEmployeeBtn);
-
-        //Defining what is shown in the Projects tab
-        VBox projectsView = new VBox();
-        projectsView.setAlignment(Pos.CENTER);
-        projectsView.setSpacing(10);
-        Label projectsLabel = new Label("Projects");
-        Button addProjectBtn = new Button("Add Project");
-        updateProjectList();
-        projectsView.getChildren().addAll(projectsLabel, new HBox(ProjectList, ProjectActivityList), addProjectBtn);
-
-        //Defining what is shown in the Personal tab
-        VBox personalView = new VBox();
-        personalView.setAlignment(Pos.CENTER);
-        personalView.setSpacing(10);
-        Label personalLabel = new Label("Personal");
-        personalView.getChildren().addAll(personalLabel);
-
-
-
-        root.setTop(topBar);
-        root.setCenter(employeesView);
-        employeesBtn.setOnAction(event -> root.setCenter(employeesView));
-        projectsBtn.setOnAction(event -> root.setCenter(projectsView));
-        personalBtn.setOnAction(event -> root.setCenter(personalView));
+        setupTopBar();
+        setupEmployeeView();
+        setupProjectView();
+        setupPersonalView();
+        setupLoginView();
+        root.setCenter(loginView);              
 
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setScene(scene);
         primaryStage.setTitle("My Application");
+        controller = new Controller(this, database);
         primaryStage.show();
     }
 
@@ -81,33 +73,36 @@ public class View extends Application {
         launch(args);
     }
 
-    public static void updateEmployeeList(){
-        ArrayList<Employee> ListOfEmployees = new ArrayList<Employee>(database.employees.values());
-        employeeList.getItems().clear();
-        for (int i = 0; i < ListOfEmployees.size(); i++){
-            employeeList.getItems().add(ListOfEmployees.get(i));
-        }
+    //View Setup methods ----
+    private static void setupLoginView(){
+        loginView.setAlignment(Pos.CENTER);
+        loginView.setSpacing(10);
+        loginView.getChildren().addAll(loginField,loginBtn);
     }
 
-    public static void updateEmployeeActivityList(Employee e){
-        employeeActivityList.getItems().clear();
-        for (int i = 0; i < e.getActivities().size(); i++){
-            employeeActivityList.getItems().add(e.getActivities().get(i));
-        }
+    private static void setupTopBar(){
+        topBar.setAlignment(Pos.CENTER);
+        topBar.setSpacing(20);
+        topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
     }
 
-    public static void updateProjectList(){
-        ArrayList<Project> ListOfProjects = new ArrayList<Project>(database.projects.values());
-        ProjectList.getItems().clear();
-        for (int i = 0; i < ListOfProjects.size(); i++){
-            ProjectList.getItems().add(ListOfProjects.get(i));
-        }
+    private static void setupEmployeeView(){
+        employeesView.setAlignment(Pos.CENTER);
+        employeesView.setSpacing(10);
+        employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), createEmployeeText, createEmployeeBtn);
     }
 
-    public static void updateProjectActivityList(Project p){
-        ProjectActivityList.getItems().clear();
-        for (int i = 0; i < p.getActivities().size(); i++){
-            ProjectActivityList.getItems().add(p.getActivities().get(i));
-        }
+    private static void setupProjectView(){
+        projectsView.setAlignment(Pos.CENTER);
+        projectsView.setSpacing(10);
+        projectsView.getChildren().addAll(projectsLabel, new HBox(projectList, 
+        new VBox(projectActivityList,createProjectActivityText,createProjectActivityBtn))
+        , createProjectText, createProjectBtn);
+    }
+
+    private static void setupPersonalView(){
+        personalView.setAlignment(Pos.CENTER);
+        personalView.setSpacing(10);
+        personalView.getChildren().addAll(personalLabel);
     }
 }
