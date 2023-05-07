@@ -145,6 +145,13 @@ public class Controller {
         }
     }
 
+    public static void updatePersonalProjectList(){
+        viewer.personalActivityList.getItems().clear();
+        for (int i = 0; i < loggedInUser.getActivities().size(); i++){
+            viewer.personalActivityList.getItems().add(loggedInUser.getActivities().get(i));
+        }
+    }
+
 
     
 }

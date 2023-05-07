@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +23,7 @@ public class View extends Application {
     static ListView<Activity> employeeActivityList = new ListView<>();
     static ListView<Project> projectList = new ListView<>();
     static ListView<Activity> projectActivityList = new ListView<>();
+    static ListView<Activity> personalActivityList = new ListView<>();
     static BorderPane root = new BorderPane();
     static HBox topBar = new HBox();
     static VBox employeesView = new VBox();
@@ -45,6 +47,10 @@ public class View extends Application {
     static Button createProjectActivityBtn = new Button("Create Activity");
     //PersonalView
     static Label personalLabel = new Label("Personal");
+    static TextField createPersonalActivityText = new TextField();
+    static Button createPersonalActivityBtn = new Button("Create Activity");
+    static Menu createPersonalActivityMenu = new Menu("Type");
+
 
     static TextField loginField = new TextField();
     static Button loginBtn = new Button("Login");
@@ -103,6 +109,8 @@ public class View extends Application {
     private static void setupPersonalView(){
         personalView.setAlignment(Pos.CENTER);
         personalView.setSpacing(10);
-        personalView.getChildren().addAll(personalLabel);
+        personalView.getChildren().addAll(personalLabel,
+                                        new VBox(personalActivityList , new HBox(createPersonalActivityText, 
+                                        createPersonalActivityText, createPersonalActivityBtn)));
     }
 }
