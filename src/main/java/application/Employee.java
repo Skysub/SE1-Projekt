@@ -30,7 +30,7 @@ public class Employee implements Serializable {
 			if (!OnVacation(activity)) {
 				activities.put(activity.getName(), activity);
 			} else {
-				throw new IllegalOperationException("User "+ initials + "is on vacation during entire activity");
+				throw new IllegalOperationException("User "+ initials + " is on vacation during entire activity");
 			}
 		} else {
 			throw new IllegalOperationException("Employees cannot be assigned more than 20 activities in a given week");

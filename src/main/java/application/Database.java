@@ -36,8 +36,8 @@ public class Database implements Serializable {
 		return result; //6
 	}
 
-	public boolean hasEmployee(Object initials) {
-		return employees.containsValue(initials);
+	public boolean hasEmployee(String initials) {
+		return employees.containsKey(initials);
 	}
 
 	public void deleteEmployee(Object initials) {
