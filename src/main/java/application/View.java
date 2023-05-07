@@ -83,7 +83,7 @@ public class View extends Application {
     private static void setupTopBar(){
         topBar.setAlignment(Pos.CENTER);
         topBar.setSpacing(20);
-        topBar.getChildren().addAll(employeesBtn, projectsBtn, personalBtn);
+        topBar.getChildren().addAll(logOutBtn,employeesBtn, projectsBtn, personalBtn);
     }
 
     private static void setupEmployeeView(){

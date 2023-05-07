@@ -2,8 +2,6 @@ package application;
 
 import java.util.ArrayList;
 
-import io.cucumber.plugin.event.EventHandler;
-
 public class Controller {
     
     private static View viewer;
@@ -22,6 +20,7 @@ public class Controller {
 		}
 
         viewer.loginBtn.setOnAction(event -> loginBtnClick());
+        viewer.logOutBtn.setOnAction(event -> logoutButtonClick());
         viewer.employeesBtn.setOnAction(event -> employeeButtonClick());
         viewer.projectsBtn.setOnAction(event -> projectsButtonClick());
         viewer.personalBtn.setOnAction(event -> personalButtonClick());
