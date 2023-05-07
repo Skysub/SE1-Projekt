@@ -49,4 +49,18 @@ public class WorkActivity extends Activity {
 		ExpectedDurationWA = expWA;
 	}
 
+	public void setExpectedDuration(float hours, Employee authority) throws IllegalOperationException {
+		if(hours<0) {
+			throw new IllegalOperationException("You can not register the expected duration as a negative value");
+		}
+		
+		if(authority == parentProject.getManager() || !parentProject.HasManager() ) {
+			 expectedDuration = hours;
+		}
+		else {
+			throw new IllegalOperationException("Only the project manager can register expected duration");
+		}
+		
+	}
+
 }
