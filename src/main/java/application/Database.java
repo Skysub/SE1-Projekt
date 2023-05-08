@@ -32,9 +32,11 @@ public class Database implements Serializable {
 			result = new Employee(initials);
 			employees.put(initials, result); // 5
 		}
-		assert (employees.containsKey(initials) && 
-				result.getInitials().equals(initials) &&
-				employees.get(initials).equals(result));
+
+		assert (result.getInitials().length() <= 4);
+		assert (result.getInitials().equals(initials));
+		assert (employees.containsValue(result) && employees.containsKey(initials)
+				&& employees.get(initials).equals(result));
 		return result; //6
 	}
 
@@ -42,7 +44,7 @@ public class Database implements Serializable {
 		return employees.containsKey(initials);
 	}
 
-	public void deleteEmployee(Object initials) {
+	public void deleteEmployee(String initials) {
 		employees.remove(initials);
 	}
 
