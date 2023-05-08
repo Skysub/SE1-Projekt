@@ -18,11 +18,13 @@ public class ActivitySteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	@Given("an activity with the name {string} exists")
 	public void anActivityWithTheNameExists(String name) throws IllegalOperationException {
 		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name));
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Given("the activity has a start week of {int} and an end week of {int}")
 	public void theActivityHasAStartWeekOfAndAnEndWeekOf(Integer start, Integer end) {
 		try {
@@ -82,18 +84,20 @@ public class ActivitySteps {
 		}
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	@When("a new workActivity with the name {string} is made")
 	public void aNewWorkActivityWithTheNameIsMade(String name) throws IllegalOperationException {
 		recentWorkActivity = database.CreateProject(23001).addActivity(new WorkActivity(name));
 		recentActivity = recentWorkActivity;
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("a new workActivity with the name {string} and start week {int} is made")
 	public void aNewWorkActivityWithTheNameAndStartWeekIsMade(String name, int startWeek) throws IllegalOperationException {
 		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name, startWeek));
-
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("a new workActivity with the name {string}, start week {int} is made and end week {int}")
 	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek)  {
 		
@@ -110,6 +114,7 @@ public class ActivitySteps {
 		recentActivity.addEmployee(database.getEmployee(initials), null);
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("the employee sets the start week to {int}")
 	public void theEmployeeSetsTheStartWeekTo(Integer startWeek) {
 		try {
@@ -119,6 +124,7 @@ public class ActivitySteps {
 		}
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("the employee sets the end week to {int}")
 	public void theEmployeeSetsTheEndWeekTo(Integer endWeek) {
 		try {
@@ -150,16 +156,19 @@ public class ActivitySteps {
 		assertEquals(description, recentActivity.getDescription());
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Then("the activity has the name {string}")
 	public void theActivityHasTheName(String name) {
 		assertEquals(name, recentActivity.getName());
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the activity has the start week {int}")
 	public void theWorkActivityHasTheStartWeek(int startWeek) {
 		assertEquals(startWeek, recentActivity.getStartWeek());
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the activity has the end week {int}")
 	public void theActivityHasTheEndWeek(Integer endWeek) {
 		assertEquals(endWeek, (Integer) recentActivity.getEndWeek());

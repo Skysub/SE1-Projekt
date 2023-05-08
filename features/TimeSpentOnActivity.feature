@@ -1,4 +1,4 @@
-#Skrevet og implementeret af Frederik Cayré Hede-Andersen
+#Skrevet af Frederik Hvarregaard og implementeret af Frederik Cayré Hede-Andersen
 Feature: Times used for activity
 
 Scenario: A user registers time used

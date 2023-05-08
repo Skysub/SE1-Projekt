@@ -1,4 +1,4 @@
-#Skrevet af Abdul
+#Skrevet og implementeret af Abdul
 Feature: expected duration of activity
 Description: A project manager can register an expected duration on a work activity
 Actors: Employee & project manager

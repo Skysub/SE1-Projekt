@@ -37,11 +37,13 @@ public class ProjectSteps {
 		recentWorkActivity = recentProject.addActivity(new WorkActivity(name), recentManager);
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	@Given("a project with project number {int} and project name {string} exists")
 	public void theProjectWithProjectNumberAndProjectNameExists(Integer ID, String name) throws Exception{
 		recentProject = database.CreateProject(ID, name);
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	@When("the employee creates a project with project number {int} and project name {string}")
 	public void the_employee_creates_a_project_with_project_number_and_project_name(Integer ID, String name) {
 		try {
@@ -83,6 +85,7 @@ public class ProjectSteps {
 	    assertEquals(description, recentProject.getDescription());
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	@Then("the project with project number {int} and project name {string} exists")
 	public void the_project_with_project_number_and_project_name_exists(Integer ID, String name) {
 		Project project = database.getProject(ID);

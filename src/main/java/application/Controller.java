@@ -2,7 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
-//Metoden er skrevet af Frederik Hvarregaard
+//Klassen er skrevet af Frederik Hvarregaard
 public class Controller {
     
     private static View viewer;

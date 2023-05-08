@@ -1,4 +1,4 @@
-#Skrevet af Frederik Cayré
+#Skrevet og implementeret af Frederik Cayré Hede-Andersen
 Feature: Add personal activities - Frederik Hvarregaard
 	Description: Adding personal activities such as vacation
 

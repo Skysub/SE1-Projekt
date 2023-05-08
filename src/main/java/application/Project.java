@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//Klassen er skrevet af Frederik Cayré Hede-Andersen
+//Klassen er skrevet af Frederik Cayré Hede-Andersen på nær de metoder hvor et andet navn står
 public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
 
@@ -28,6 +28,7 @@ public class Project extends Template implements Serializable {
 		return activity;
 	}
 
+	//Metoden er skrevet af Naila Aoussar
 	public WorkActivity addActivity(WorkActivity activity, Employee authority) throws IllegalOperationException {
 		if (projectManager == null || (authority != null && projectManager.getInitials() == authority.getInitials())) {
 			if (!activities.containsKey(activity.getName())) {

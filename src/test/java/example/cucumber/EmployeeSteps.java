@@ -24,6 +24,7 @@ public class EmployeeSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@When("a new employee profile with the ID {string} is made")
 	public void aNewEmployeeProfileWithTheIDIsMade(String initials) {
 		try {
@@ -33,11 +34,13 @@ public class EmployeeSteps {
 		}
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Then("The employee has the initials {string}")
 	public void theEmployeeHasTheInitials(String expectedInitials) {
 		assertEquals(expectedInitials, recentEmployee.getInitials());
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Given("an employee with the ID {string} exists")
 	public void anEmployeeWithTheIDExists(String initials) throws Exception {
 		recentEmployee = database.CreateEmployee(initials);
@@ -49,26 +52,31 @@ public class EmployeeSteps {
 		assertTrue(database.getEmployee(initials).hasActivity(activityName));
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Then("the error message {string} is given")
 	public void theErrorMessageIsGiven(String error) {
 		assertEquals(error, errorMessageHolder.getErrorMessage());
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@When("the employee sets the title of the employee to {string}")
 	public void theEmployeeSetsTheTitleOfTheEmployeeTo(String title) {
 		recentEmployee.setTitle(title);
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Then("the title of the employee is {string}")
 	public void theTitleOfTheEmployeeIs(String expectedTitle) {
 		assertEquals(expectedTitle, recentEmployee.getTitle());
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Given("the employee has the title {string}")
 	public void theEmployeeHasTheTitle(String title) {
 		recentEmployee.setTitle(title);
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@When("the employee deletes the employee profile")
 	public void theEmployeeDeletesTheEmployeeProfile() {
 		database.deleteEmployee(recentEmployee.getInitials());
@@ -80,6 +88,7 @@ public class EmployeeSteps {
 	    empList = database.getAvailableEmployees(week);
 	}
 
+	//Metoden er skrevet af Frederik Hvarregaard
 	@Then("an employee with the ID {string} does not exist")
 	public void anEmployeeWithTheIDDoesNotExist(String initials) {
 		assertFalse(database.hasEmployee(initials));

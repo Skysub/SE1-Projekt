@@ -1,4 +1,4 @@
-#Skrevet af Frederik Hvarregaard
+#Skrevet og implementeret af Frederik Hvarregaard
 Feature: Set-Up of an Employee
 
     Scenario: an Employee is made

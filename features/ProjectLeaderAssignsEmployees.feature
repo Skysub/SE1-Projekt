@@ -1,5 +1,5 @@
 #Skrevet og implementeret af Frederik Cayré Hede-Andersen
-Feature: A project leader can assign employees to activities -Oliver
+Feature: A project leader can assign employees to activities
 
 Description: The ability to assign employees to activities for the project manager. The employee should not be able to do so, thus they receive an error.
 Actors: Project leader, employee

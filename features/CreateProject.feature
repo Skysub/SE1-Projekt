@@ -1,4 +1,4 @@
-#Skrevet af Naila
+#Skrevet og implementeret af Naila
 Feature: Create a project
     Description: A employee creates a project
     Actors: Employee

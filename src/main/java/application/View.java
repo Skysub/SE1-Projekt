@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//Metoden er skrevet af Frederik Hvarregaard
+//Klassen er skrevet af Frederik Hvarregaard
 public class View extends Application {
     static Controller controller;
     static Database database = new Database();
@@ -76,7 +76,9 @@ public class View extends Application {
     }
 
     public static void main(String[] args) throws IllegalOperationException {
-        showoffsetup();
+    	//Hvis du vil se en masse pre-genereret stuff så afkommenter næste linje
+        //showoffsetup();
+    	database.CreateEmployee("fred");
         launch(args);
     }
 
@@ -121,7 +123,6 @@ public class View extends Application {
         database.CreateEmployee("abdu");
         database.CreateEmployee("uuuu");
         database.CreateEmployee("uul");
-        database.CreateEmployee("fred");
         database.CreateEmployee("nail");
         database.CreateEmployee("karr");
         database.CreateProject(controller.projectID(), "første");

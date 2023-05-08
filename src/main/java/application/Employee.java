@@ -22,6 +22,7 @@ public class Employee implements Serializable {
 
 	int workHours;
 
+	//Metoden er skrevet af Frederik Hvarregaard 
 	public Employee(String initials) {
 		this.initials = initials;
 	}
