@@ -1,4 +1,4 @@
-#Skrevet af Frederik Cayré
+#Skrevet og implementeret af Frederik Cayré Hede-Andersen
 Feature: Templates for easier project creation - Frederik 
   Description: Templates used by employees creating new projects to have a quicker start with standard boilerplate. Save projects as templates.
   Actors: Employee  

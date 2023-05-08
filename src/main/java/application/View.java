@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+//Metoden er skrevet af Frederik Hvarregaard
 public class View extends Application {
     static Controller controller;
     static Database database = new Database();

@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen på nær de metoder hvor et andet navn står
 public class Database implements Serializable {
 	@java.io.Serial
 	private static final long serialVersionUID = 7449338984745986944L;
 
 	HashMap<String, Employee> employees;
-	HashMap<Integer, Project> projects; // Vi kan overveje om de skal gemmes som ID eller navn
+	HashMap<Integer, Project> projects;
 	HashMap<Integer, Template> templates;
 
 	public Database() {
@@ -20,6 +21,7 @@ public class Database implements Serializable {
 		templates = new HashMap<Integer, Template>();
 	}
 
+	//Skrevet af Frederik Hvarregaard 
 	public Employee CreateEmployee(String initials) throws IllegalOperationException {
 		assert (initials != null);
 		Employee result = null;
@@ -48,12 +50,13 @@ public class Database implements Serializable {
 		employees.remove(initials);
 	}
 
-
+	//Skrevet af Frederik Hvarregaard
 	public Project CreateProject(int ID) {
 		projects.put(ID, new Project(ID, null));
 		return projects.get(ID);
 	}
 
+	//Skrevet af Naila Aoussar
 	public Project CreateProject(int ID, String name) throws IllegalOperationException {
 		if (projects.get(ID) == null) {
 			projects.put(ID, new Project(ID, name));

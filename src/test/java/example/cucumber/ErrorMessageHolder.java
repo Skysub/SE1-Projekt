@@ -1,5 +1,6 @@
 package example.cucumber;
 
+//Klassen er skrevet af Frederik Hvarregaard
 public class ErrorMessageHolder {
     private String errorMessage = "";
     public String getErrorMessage(){

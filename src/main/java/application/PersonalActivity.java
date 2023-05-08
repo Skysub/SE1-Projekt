@@ -2,6 +2,7 @@ package application;
 
 import java.io.Serializable;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen på nær den metoder hvor et andet navn står
 public class PersonalActivity extends Activity implements Serializable {
 	private static final long serialVersionUID = 83121472403813271L;
 	PAType type = PAType.OTHER;
@@ -33,6 +34,7 @@ public class PersonalActivity extends Activity implements Serializable {
 		return type;
 	}
 	
+	//Metoden er skrevet af Abdul Haseeb Farooq
 	public void setExpectedDuration(float exp) {
 		expectedDuration = exp;
 	}

@@ -43,6 +43,7 @@ public class EmployeeSteps {
 		recentEmployee = database.CreateEmployee(initials);
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the employee with the ID {string} has the activity with name {string}")
 	public void theEmployeeHasTheActivityWithName(String initials, String activityName) {
 		assertTrue(database.getEmployee(initials).hasActivity(activityName));
@@ -73,6 +74,7 @@ public class EmployeeSteps {
 		database.deleteEmployee(recentEmployee.getInitials());
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("the employee searches for available employees around week {int}")
 	public void theEmployeeSearchesForAvailableEmployeesAroundWeek(Integer week) {
 	    empList = database.getAvailableEmployees(week);
@@ -83,6 +85,7 @@ public class EmployeeSteps {
 		assertFalse(database.hasEmployee(initials));
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the employee gets a list of employees with the IDs {string} and {string} and {string}")
 	public void theEmployeeGetsAListOfEmployeesWithTheIDsAndAnd(String ID1, String ID2, String ID3) {
 	    assertTrue(empList.contains(database.getEmployee(ID1)));
@@ -90,6 +93,7 @@ public class EmployeeSteps {
 	    assertTrue(empList.contains(database.getEmployee(ID3)));
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the employee gets an empty employee list")
 	public void theEmployeeGetsAnEmptyEmployeeList() {
 		assertTrue(empList.isEmpty());

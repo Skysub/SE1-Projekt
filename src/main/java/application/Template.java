@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class Template implements Serializable {
 	private static final long serialVersionUID = 6537222563620711347L;
 

@@ -1,4 +1,4 @@
-#Skrevet af Frederik Cayré
+#Skrevet og implementeret af Frederik Cayré Hede-Andersen
 Feature: Add a description to activities and projects - Frederik 
 	Description: Descriptions for better understanding of either the project or the activity
 	Actors: Employee  

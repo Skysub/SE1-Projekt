@@ -1,5 +1,7 @@
 package application;
 
+//Klassen er skrevet af Frederik Hvarregaard på nær de metoder hvor et andet navn står
+
 public class WorkActivity extends Activity {
 	private static final long serialVersionUID = 6207085657016298521L;
 
@@ -20,7 +22,8 @@ public class WorkActivity extends Activity {
 	// ---------------------------------------------------------------------
 	
 	//-----
-
+	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	public void addEmployee(Employee employee, Employee authority) throws IllegalOperationException {
 		if (parentProject.getManager() == null || (authority != null && parentProject.getManager().getInitials() == authority.getInitials())) {
 			if (!employees.containsKey(employee.getInitials())) {
@@ -45,6 +48,7 @@ public class WorkActivity extends Activity {
 		parentTemplate = template;
 	}
 
+	//Metoden er skrevet af Abdul Haseeb Farooq
 	public void setExpectedDuration(float hours, Employee authority) throws IllegalOperationException {
 		if(hours<0) {
 			throw new IllegalOperationException("You can not register the expected duration as a negative value");

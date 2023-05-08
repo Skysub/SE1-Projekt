@@ -1,4 +1,4 @@
-#Skrevet af Frederik Cayré
+#Skrevet og implementeret af Frederik Cayré Hede-Andersen
 Feature: Move activities
 	Description: A project manager and employee can move an activity forwards or backwards
 	Actors: Employee & project manager

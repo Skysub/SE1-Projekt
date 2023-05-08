@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import javafx.util.Pair;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class Employee implements Serializable {
 	private static final long serialVersionUID = -7608060694345485735L;
 

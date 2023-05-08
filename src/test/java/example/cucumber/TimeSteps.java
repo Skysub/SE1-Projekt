@@ -14,6 +14,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class TimeSteps {
 
 	Database database;
@@ -25,6 +26,8 @@ public class TimeSteps {
 		this.database = database;
 		this.errorMessageHolder = errorMessageHolder;
 	}
+	
+	//Hele klassen er skrevet af Frederik Cayré Hede-Andersen
 
 	@When("the employee with the ID {string} registers {int} hours worked on the activity with the name {string} in the project with ID {int}")
 	public void theEmployeeWithTheIDRegistersHoursWorkedOnTheActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name,

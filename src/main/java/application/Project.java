@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class Project extends Template implements Serializable {
 	private static final long serialVersionUID = 6537227987620711347L;
 

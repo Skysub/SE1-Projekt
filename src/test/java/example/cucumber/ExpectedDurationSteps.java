@@ -31,6 +31,7 @@ public class ExpectedDurationSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 		
+	//Metoden er skrevet af Abdul Haseeb Farooq
 	@When("the employee with the ID {string} registers {int} hours as the expected duration in the workActivity with the name {string} in the project with ID {int}")
 	public void theEmployeeWithTheIDRegistersHoursAsTheExpectedDurationInTheWorkActivityWithTheNameInTheProjectWithID(String initials, Integer hours, String name, Integer ID) {
 		recentWorkActivity = database.getProject(ID).getActivity(name);
@@ -41,6 +42,7 @@ public class ExpectedDurationSteps {
 		}
 	}
 	
+	//Metoden er skrevet af Abdul Haseeb Farooq
 	@Then("the activity has {int} hours as the expected duration")
 	public void theActivityHasHoursAsTheExpectedDuration(Integer hours) {
 		assertEquals((float)hours,recentWorkActivity.getExpectedDuration(),0.0166f);

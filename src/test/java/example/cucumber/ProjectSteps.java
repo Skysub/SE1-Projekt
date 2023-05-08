@@ -25,11 +25,13 @@ public class ProjectSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Given("the project with project number {int} has a project manager with the ID {string}")
 	public void theProjectWithProjectNumberHasAProjectManagerWithTheID(Integer projectID, String managerID) {
 		recentManager = database.getProject(projectID).setManager(database.getEmployee(managerID));
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Given("the project has a workActivity with the name {string}")
 	public void theProjectHasAnActivityWithTheName(String name) throws IllegalOperationException {
 		recentWorkActivity = recentProject.addActivity(new WorkActivity(name), recentManager);
@@ -49,6 +51,7 @@ public class ProjectSteps {
 		}
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("the project manager assigns the employee with the ID {string} to the workActivity")
 	public void theProjectManagerAssignsTheEmployeeWithTheIDToTheActivity(String ID) {
 		try {
@@ -58,6 +61,7 @@ public class ProjectSteps {
 		}
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("the employee with the ID {string} assigns the employee with the ID {string} to the workActivity")
 	public void theEmployeeWithTheIDAssignsTheEmployeeWithTheIDToTheWorkActivity(String ID1, String ID2) {
 		try {
@@ -67,11 +71,13 @@ public class ProjectSteps {
 		}
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@When("an employee sets the description {string} to the project")
 	public void anEmployeeSetsTheDescriptionToTheProject(String description) {
 		recentProject.setDescription(description);
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the project has the description {string}")
 	public void theProjectHasTheDescription(String description) {
 	    assertEquals(description, recentProject.getDescription());
@@ -83,11 +89,13 @@ public class ProjectSteps {
 		assertEquals(project.getName(), name);
 	}
 
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the activity in the project has the employee with initials {string}")
 	public void theActivityInTheProjectHasTheEmployeeWithInitials(String initials) {
 		assertTrue(recentWorkActivity.containsEmployee(database.getEmployee(initials)));
 	}
 	
+	//Metoden er skrevet af Frederik Cayré Hede-Andersen
 	@Then("the project with ID {int} has an activity with the name {string}")
 	public void theProjectHasAnActivity(Integer ID, String name) {
 		assertTrue(database.getProject(ID).hasActivity(name));

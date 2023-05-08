@@ -1,4 +1,4 @@
-#Skrevet af Frederik Cayré
+#Skrevet og implementeret af Frederik Cayré Hede-Andersen
 Feature: Work distribution
 Description: Employees should be able to work on up to 20 activities during a week
 Actors: Employee

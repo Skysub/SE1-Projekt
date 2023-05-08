@@ -7,6 +7,7 @@ import application.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class TemplateSteps {
 	Database database;
 	ErrorMessageHolder errorMessageHolder;
@@ -16,6 +17,8 @@ public class TemplateSteps {
 		this.database = database;
 		this.errorMessageHolder = errorMessageHolder;
 	}
+	
+	////Hele klassen er skrevet af Frederik Cayré Hede-Andersen
 	
 	@When("an employee saves the project with ID {int} as a template with the ID {int}")
 	public void anEmployeeSavesTheProjectWithIDAsATemplateWithTheID(Integer pID, Integer tID) throws IllegalOperationException {

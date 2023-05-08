@@ -12,6 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.util.Pair;
 
+//Klassen er skrevet af Frederik Cayré Hede-Andersen
 public class PersonalActivitySteps {
 
 	Database database;
@@ -24,6 +25,9 @@ public class PersonalActivitySteps {
 		this.database = database;
 		this.errorMessageHolder = errorMessageHolder;
 	}
+	
+	//Alle metoderne er skrevet af Frederik Cayré Hede-Andersen
+	//Nogle af metoderne er ens på nær minimale ændringer i forhold til metoder i activity steps
 
 	@Given("the employee with the ID {string} has a personal activity with the name {string}")
 	public void TheEmployeeWithTheIDHasAPersonalActivityWithTheName(String initials, String name) throws Exception {
