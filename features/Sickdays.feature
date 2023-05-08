@@ -1,3 +1,4 @@
+#Skrevet af Frederik Cayré
 Feature: An employee registers when they are sick
 	Description: The employee can create a sickness activity under personal activities and others can check when they have been sick.
 	

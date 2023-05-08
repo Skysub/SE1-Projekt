@@ -1,4 +1,5 @@
-Feature: Times used for activity - Frederik Hvarregaard
+#Skrevet af Frederik Cayré
+Feature: Times used for activity
 
 Scenario: A user registers time used
 	Given a project with project number 23069 and project name "Time stuffs" exists

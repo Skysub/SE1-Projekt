@@ -95,7 +95,8 @@ public class View extends Application {
     private static void setupEmployeeView(){
         employeesView.setAlignment(Pos.CENTER);
         employeesView.setSpacing(10);
-        employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), createEmployeeText, createEmployeeBtn);
+        employeesView.getChildren().addAll(employeesLabel, new HBox(employeeList, employeeActivityList), 
+                                                                createEmployeeText, createEmployeeBtn);
     }
 
     private static void setupProjectView(){
