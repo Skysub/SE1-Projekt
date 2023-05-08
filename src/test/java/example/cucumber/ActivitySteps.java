@@ -25,8 +25,12 @@ public class ActivitySteps {
 
 	@Given("the activity has a start week of {int} and an end week of {int}")
 	public void theActivityHasAStartWeekOfAndAnEndWeekOf(Integer start, Integer end) {
+		try {
 		recentActivity.setStartWeek(start);
 		recentActivity.setEndWeek(end);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Given("{int} activities with start week {int} and end week {int} in the project with the ID {int} exist")
@@ -56,7 +60,11 @@ public class ActivitySteps {
 	
 	@Given("the activity with the ID {string} in the project with ID {int} has a start week of {int} and an end week of {int}")
 	public void theActivityWithTheIDInTheProjectWithIDHasAStartWeekOfAndAnEndWeekOf(String name, Integer ID, Integer sw, Integer ew) {
-	    database.getProject(ID).getActivity(name).setTimeFrame(sw, ew);
+	    try {
+			database.getProject(ID).getActivity(name).setTimeFrame(sw, ew);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@When("the employee with ID {string} adds an activity with the name {string} to the project with ID {int}")
@@ -81,8 +89,13 @@ public class ActivitySteps {
 	}
 
 	@When("a new workActivity with the name {string}, start week {int} is made and end week {int}")
-	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek) throws IllegalOperationException {
-		recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name, startWeek, endWeek));
+	public void aNewWorkActivityWithTheNameStartWeekIsMadeAndEndWeek(String name, Integer startWeek, Integer endWeek)  {
+		
+		try {
+			recentActivity = database.CreateProject(23001).addActivity(new WorkActivity(name, startWeek, endWeek));
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@When("the employee with the ID {string} is added to the activity")
@@ -92,12 +105,20 @@ public class ActivitySteps {
 
 	@When("the employee sets the start week to {int}")
 	public void theEmployeeSetsTheStartWeekTo(Integer startWeek) {
-		recentActivity.setStartWeek(startWeek);
+		try {
+			recentActivity.setStartWeek(startWeek);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@When("the employee sets the end week to {int}")
 	public void theEmployeeSetsTheEndWeekTo(Integer endWeek) {
-		recentActivity.setEndWeek(endWeek);
+		try {
+			recentActivity.setEndWeek(endWeek);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@When("an employee with the ID {string} is assigned the activity named {string} in the project with ID {int}")

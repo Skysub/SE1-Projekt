@@ -35,8 +35,13 @@ public class PersonalActivitySteps {
 
 	@Given("the personal activity has a start week of {int} and an end week of {int}")
 	public void thePersonalActivityHasAStartWeekOfAndAnEndWeekOf(Integer startWeek, Integer endWeek) {
-		recentPA.setStartWeek(startWeek);
-		recentPA.setEndWeek(endWeek);
+		try {
+			recentPA.setStartWeek(startWeek);
+			recentPA.setEndWeek(endWeek);
+		} catch (IllegalOperationException e) {
+			errorMessageHolder.setErrorMessage(e.getMessage());
+		}
+		
 	}
 	
 	@Given("the employee registers {int} sick workhours during week {int}")

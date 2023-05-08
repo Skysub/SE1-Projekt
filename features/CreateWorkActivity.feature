@@ -14,3 +14,7 @@ Scenario: A workActivity is made with name and start week
     Then the activity has the name "Start activity"
     And the activity has the start week 2
     And the activity has the end week 3
+    
+ Scenario: A workActivity cannot have endweek before startweek
+    When a new workActivity with the name "Start activity", start week 2 is made and end week 1
+    Then the error message "Endweek cannot be before startweek" is given

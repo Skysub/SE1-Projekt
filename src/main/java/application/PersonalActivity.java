@@ -17,7 +17,7 @@ public class PersonalActivity extends Activity implements Serializable {
 		employees.put(employee.getInitials(), employee);
 	}
 	
-	public PersonalActivity(String name, int startWeek, int endWeek , PAType type, Employee employee) {
+	public PersonalActivity(String name, int startWeek, int endWeek , PAType type, Employee employee) throws IllegalOperationException {
 		super(name, startWeek, endWeek);
 		this.type = type;
 		employees.put(employee.getInitials(), employee);

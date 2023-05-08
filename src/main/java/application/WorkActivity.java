@@ -14,7 +14,7 @@ public class WorkActivity extends Activity {
 		super(name, startWeek);
 	}
 
-	public WorkActivity(String name, int startWeek, int endWeek) {
+	public WorkActivity(String name, int startWeek, int endWeek) throws IllegalOperationException {
 		super(name, startWeek, endWeek);
 	}
 	// ---------------------------------------------------------------------

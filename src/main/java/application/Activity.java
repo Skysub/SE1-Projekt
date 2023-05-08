@@ -26,7 +26,8 @@ public abstract class Activity implements Serializable {
 		this.startWeek = startWeek;
 	}
 
-	public Activity(String name, int startWeek, int endWeek) {
+	public Activity(String name, int startWeek, int endWeek) throws IllegalOperationException {
+		if(endWeek < startWeek) throw new IllegalOperationException("Endweek cannot be before startweek");
 		this.name = name;
 		this.startWeek = startWeek;
 		this.endWeek = endWeek;
@@ -68,15 +69,21 @@ public abstract class Activity implements Serializable {
 		return endWeek;
 	}
 
-	public void setStartWeek(int startWeek) {
+	public void setStartWeek(int startWeek) throws IllegalOperationException {
+		if(endWeek < startWeek && endWeek != 0) throw new IllegalOperationException("Endweek cannot be before startweek");
+
 		this.startWeek = startWeek;
 	}
 
-	public void setEndWeek(int endWeek) {
+	public void setEndWeek(int endWeek) throws IllegalOperationException {
+		if(endWeek < startWeek && startWeek != 0) throw new IllegalOperationException("Endweek cannot be before startweek");
+
 		this.endWeek = endWeek;
 	}
 	
-	public void setTimeFrame(int startWeek, int endWeek) {
+	public void setTimeFrame(int startWeek, int endWeek) throws IllegalOperationException {
+		if(endWeek < startWeek) throw new IllegalOperationException("Endweek cannot be before startweek");
+
 		this.startWeek = startWeek;
 		this.endWeek = endWeek;
 	}
