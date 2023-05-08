@@ -92,7 +92,7 @@ public class Controller {
                 try {
                     currentProject.addActivity(new WorkActivity(activityName, 1, 2));
                 } catch (IllegalOperationException e) {
-                    e.printStackTrace();				
+                    viewer.createProjectActivityText.setText(e.getMessage());				
                 }
                 updateProjectActivityList(currentProject); 
             }           

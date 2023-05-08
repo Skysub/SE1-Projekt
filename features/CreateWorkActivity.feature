@@ -1,3 +1,4 @@
+#Skrevet af Frederik Hvarregaard
 Feature: Make an Activity
 
 Scenario: A workActivity is made with a name

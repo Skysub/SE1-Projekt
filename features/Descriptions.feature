@@ -1,3 +1,4 @@
+#Skrevet af Frederik Cayré
 Feature: Add a description to activities and projects - Frederik 
 	Description: Descriptions for better understanding of either the project or the activity
 	Actors: Employee  
