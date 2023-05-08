@@ -13,12 +13,6 @@ public class Controller {
     public Controller(View view, Database db) {
         viewer = view;
         database = db;
-        
-        try {
-			db.CreateEmployee("TEST");
-		} catch (IllegalOperationException e) {
-			e.printStackTrace();
-		}
 
         viewer.loginBtn.setOnAction(event -> loginBtnClick());
         viewer.logOutBtn.setOnAction(event -> logoutButtonClick());
