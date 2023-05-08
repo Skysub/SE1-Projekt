@@ -24,17 +24,24 @@ public class Employee implements Serializable {
 	public Employee(String initials) {
 		this.initials = initials;
 	}
-
+	
 	public void addActivity(Activity activity) throws IllegalOperationException {
+		assert activity != null;
+		assert activity.getName() != null;
+		assert activities != null;
+		
 		if (!Overburdened() || activity instanceof PersonalActivity) {
 			if (!OnVacation(activity)) {
 				activities.put(activity.getName(), activity);
 			} else {
-				throw new IllegalOperationException("User "+ initials + " is on vacation during entire activity");
+				throw new IllegalOperationException("User is on vacation during entire activity");
 			}
 		} else {
 			throw new IllegalOperationException("Employees cannot be assigned more than 20 activities in a given week");
 		}
+		
+		assert activities.containsKey(activity.getName());
+		assert activities.get(activity.getName()) == activity;
 	}
 
 	// Adds time registered for activity, returns total time worked
