@@ -17,7 +17,7 @@ Scenario: An employee is added to an activity while on vacation during entire ac
 	And the project has a workActivity with the name "workwork"
 	And the activity with the ID "workwork" in the project with ID 23069 has a start week of 10 and an end week of 12 
 	When the employee with the ID "JJCB" assigns the employee with the ID "JJCB" to the workActivity
-	Then the error message "User JJCB is on vacation during entire activity" is given
+	Then the error message "User is on vacation during entire activity" is given
 	
 Scenario: An employee is added to an activity while on vacation for some of the activity
 	Given an employee with the ID "JJCB" exists

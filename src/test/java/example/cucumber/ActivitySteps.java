@@ -134,11 +134,6 @@ public class ActivitySteps {
 		assertEquals(endWeek, (Integer) recentActivity.getEndWeek());
 	}
 
-	@Then("the activity has the hours spent{int}")
-	public void theEmployeeSetsTheHours(Integer Hours) {
-		assertEquals(Hours, (Integer) recentActivity.getEndWeek());
-	}
-
 	@Then("the activity has the employee with initials {string}")
 	public void theActivityHasTheEmployeeWithInitials(String initials) {
 		assertTrue(recentActivity.containsEmployee(database.getEmployee(initials)));
